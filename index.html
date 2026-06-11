@@ -163,7 +163,7 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.2)}
 <section id="hero">
 <canvas id="hc"></canvas>
 
-<p class="hero-eyebrow">2027 수능특강 독서 · 2022 개정 교육과정 연계</p>
+<p class="hero-eyebrow">기출 제시문 · 2022 개정 교육과정 연계</p>
 <h1 class="hero-title">모두의 비문학<br><span class="g">제시문 속 수학탐구</span></h1>
 
 <div class="hero-copy-wrap">
@@ -171,7 +171,7 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.2)}
 </div>
 
 <p class="hero-desc">
-  수능특강 과학기술 지문 속 수식을 찾고,<br>
+  비문학 제시문 과학기술 관련 지문 속 수식을 찾고,<br>
   <strong>2022 개정 수학 단원</strong>과 연결해 탐구 주제를 설계합니다.<br>
   슬라이더로 변수를 바꾸며 수학적 원리를 직접 확인하세요.
 </p>
@@ -188,7 +188,7 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.2)}
   <div id="home">
     <div class="h-head reveal">
       <h2>탐구 주제 선택</h2>
-      <p>수능특강 독서 과학기술 지문에서 수학적 표현을 찾고, 2022 개정 수학 단원과 연결해 탐구합니다.<br>
+      <p>비문학 독서 과학기술 지문에서 수학적 표현을 찾고, 2022 개정 수학 단원과 연결해 탐구합니다.<br>
       <strong style="color:var(--acc)">지문 분석 → 탐구 설계 → 수식 탐구 → 연습문제</strong> 4단계로 진행됩니다.</p>
     </div>
     <div class="tg" id="tg"></div>
@@ -299,11 +299,11 @@ for(let i=0;i<14;i++){const e=document.createElement('div');e.className='eye';e.
 })();
 
 /* ════════════════════════════════════════════
-   DATA — 수능특강 독서 과학기술 지문 기반
+   DATA — 비문학 독서 과학기술 지문 기반
 ════════════════════════════════════════════ */
 const TOPICS=[
   {
-    id:'lens',category:'물리·광학',source:'2027 수능특강 독서 — 과학기술 01',
+    id:'lens',category:'물리·광학',source:'비문학 독서 — 과학기술 01',
     title:'볼록 렌즈와 역수 관계',badge:'역수 관계·분수',color:'#A78BFA',
     formula:'1/f = 1/a + 1/b',
     curriculum:{
@@ -369,7 +369,7 @@ const TOPICS=[
   },
 
   {
-    id:'dna',category:'생물·화학',source:'2027 수능특강 독서 — 과학기술 02',
+    id:'dna',category:'생물·화학',source:'2027 비문학 독서 — 과학기술 02',
     title:'DNA 복제와 지수함수',badge:'지수함수',color:'#34D399',
     formula:'N(t) = N₀ · 2^t',
     curriculum:{
@@ -429,7 +429,7 @@ const TOPICS=[
   },
 
   {
-    id:'fluid',category:'물리·유체',source:'2027 수능특강 독서 — 과학기술 03',
+    id:'fluid',category:'물리·유체',source:'2027 비문학 독서 — 과학기술 03',
     title:'베르누이 법칙과 이차함수',badge:'이차함수·연립',color:'#60A5FA',
     formula:'P + ½ρv² + ρgh = 상수',
     curriculum:{
@@ -490,7 +490,7 @@ const TOPICS=[
   },
 
   {
-    id:'seismic',category:'지구과학',source:'2027 수능특강 독서 — 과학기술 04',
+    id:'seismic',category:'지구과학',source:'2027 비문학 독서 — 과학기술 04',
     title:'지진파 속도와 도착 시간 차',badge:'일차함수·연립',color:'#FBBF24',
     formula:'t = d / v  →  Δt = d(1/v_S − 1/v_P)',
     curriculum:{
@@ -552,7 +552,7 @@ const TOPICS=[
   },
 
   {
-    id:'heat',category:'열역학',source:'2027 수능특강 독서 — 과학기술 05',
+    id:'heat',category:'열역학',source:'2027 비문학 독서 — 과학기술 05',
     title:'열전도와 비례·반비례',badge:'비례·반비례',color:'#FF6B9D',
     formula:"Q/t = k·A·ΔT / d",
     curriculum:{
