@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>모두의 비문학 제시문 속 수학탐구</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0C12;--surface:#111318;--card:#171B24;--border:#1E2434;
+  --muted:#2E3448;--t3:#4A5070;--t2:#7A85A8;--t1:#B8C0D8;--t0:#EEF0F8;
+  --acc:#7B6FFF;--acc2:#FF6B9D;--gold:#FFCF5C;--teal:#06D6A0;
+  --orange:#FF9F43;--r:.75rem;--r2:1.25rem;
+  --shadow:0 8px 32px rgba(0,0,0,.55);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t0);font-family:'Noto Sans KR',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--surface)}::-webkit-scrollbar-thumb{background:var(--muted);border-radius:9px}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:40px 20px;text-align:center}
+#hc{position:absolute;inset:0;pointer-events:none}
+.eye{position:absolute;font-family:'JetBrains Mono',monospace;color:var(--acc);opacity:.06;pointer-events:none;animation:flt 14s linear infinite}
+@keyframes flt{0%{transform:translateY(110vh) rotate(0deg);opacity:0}8%{opacity:.07}92%{opacity:.07}100%{transform:translateY(-10vh) rotate(380deg);opacity:0}}
+.hero-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--t3);margin-bottom:18px;position:relative;z-index:1}
+.hero-title{font-size:clamp(2rem,6vw,4rem);font-weight:900;letter-spacing:-.025em;line-height:1.1;margin-bottom:14px;position:relative;z-index:1}
+.hero-title .g{background:linear-gradient(100deg,var(--acc),var(--acc2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-copy-wrap{height:52px;margin-bottom:34px;position:relative;z-index:1}
+#signCanvas{display:block;margin:0 auto}
+.hero-desc{max-width:500px;color:var(--t2);font-size:14px;line-height:1.85;margin-bottom:38px;position:relative;z-index:1}
+.hero-desc strong{color:var(--teal)}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;padding:14px 34px;border-radius:99px;font-size:15px;font-weight:700;cursor:pointer;border:none;position:relative;z-index:1;transition:transform .2s,box-shadow .2s;box-shadow:0 0 40px rgba(123,111,255,.45);font-family:inherit}
+.hero-btn:hover{transform:translateY(-3px);box-shadow:0 6px 50px rgba(123,111,255,.65)}
+
+/* ── APP ── */
+#app{display:none;min-height:100vh}
+#app.on{display:block}
+
+/* ── TOPBAR ── */
+#topbar{position:sticky;top:0;z-index:100;background:rgba(10,12,18,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;height:56px;gap:16px}
+.tb-logo{font-weight:900;font-size:14px;color:var(--t0);cursor:pointer;display:flex;align-items:center;gap:8px}
+.tb-dot{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 8px var(--acc)}
+.tb-ttl{flex:1;font-size:13px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-back{background:var(--border);border:none;color:var(--t2);padding:6px 14px;border-radius:99px;cursor:pointer;font-size:12px;font-family:inherit;transition:background .15s;display:none}
+.tb-back:hover{background:var(--muted)}
+.tb-back.show{display:block}
+
+/* ── HOME ── */
+#home{max-width:880px;margin:0 auto;padding:40px 20px 80px}
+.h-head{margin-bottom:28px}
+.h-head h2{font-size:22px;font-weight:800;margin-bottom:6px}
+.h-head p{font-size:13px;color:var(--t2);line-height:1.7}
+.tg{display:grid;gap:12px}
+.tc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px 20px;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:0 14px;align-items:center;transition:transform .18s,border-color .2s,box-shadow .18s;position:relative;overflow:hidden}
+.tc:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.tc:hover{border-color:var(--tc-clr,.3)}
+.tc-f{font-family:'JetBrains Mono',monospace;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:11px;color:var(--t1);white-space:nowrap;line-height:1.6}
+.tc-m{display:flex;flex-direction:column;gap:3px;min-width:0}
+.tc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:3px}
+.tag{font-size:10px;padding:2px 9px;border-radius:99px;font-weight:700;letter-spacing:.02em}
+.tc-nm{font-size:15px;font-weight:700;color:var(--t0)}
+.tc-sb{font-size:12px;color:var(--t3)}
+.tc-ar{color:var(--muted);font-size:18px;transition:transform .2s,color .2s}
+.tc:hover .tc-ar{transform:translateX(4px);color:var(--t2)}
+
+/* ── DETAIL ── */
+#detail{display:none;max-width:800px;margin:0 auto;padding:28px 20px 80px}
+#detail.show{display:block}
+.stepper{display:flex;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 18px;margin-bottom:24px;gap:0;overflow-x:auto}
+.si{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
+.sc{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;border:2px solid var(--border);color:var(--t3);background:var(--surface);cursor:pointer;transition:all .25s}
+.sc.active{background:var(--sc-clr,var(--acc));border-color:var(--sc-clr,var(--acc));color:#fff;box-shadow:0 0 20px color-mix(in srgb,var(--sc-clr,var(--acc)) 50%,transparent)}
+.sc.done{background:var(--sc-clr,var(--acc));border-color:var(--sc-clr,var(--acc));color:#fff;opacity:.55}
+.sl{font-size:10px;color:var(--t3);white-space:nowrap}
+.sl.active{color:var(--sc-clr,var(--acc));font-weight:700}
+.sline{flex:1;height:2px;background:var(--border);margin:0 5px;margin-bottom:14px;min-width:18px;transition:background .3s}
+.sline.done{background:var(--sc-clr,var(--acc));opacity:.5}
+.panel{display:none;animation:fu .3s ease}
+.panel.active{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s}
+.reveal.in{opacity:1;transform:none}
+
+/* ── PASSAGE ── */
+.passage-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:22px;margin-bottom:14px;font-size:15px;line-height:2.1;color:var(--t1);position:relative}
+.passage-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;background:var(--topic-clr,var(--acc))}
+mark.hl{background:transparent;border-bottom:2.5px solid var(--hl-clr,var(--gold));color:var(--t0);font-weight:600;cursor:pointer;border-radius:2px;padding:1px 2px;position:relative;transition:background .15s}
+mark.hl:hover{background:color-mix(in srgb,var(--hl-clr,var(--gold)) 14%,transparent)}
+.hl-tp{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a1e2e;border:1px solid var(--hl-clr,var(--gold));color:var(--t0);font-size:12px;padding:7px 11px;border-radius:8px;white-space:nowrap;z-index:99;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,.6);display:none}
+.hl-tp::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--hl-clr,var(--gold))}
+mark.hl:hover .hl-tp{display:block}
+.hl-list{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:18px;margin-bottom:14px}
+.hl-lt{font-size:11px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.hl-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.hl-item:last-child{border-bottom:none;padding-bottom:0}
+.hl-n{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
+.hl-tx{font-size:13px;color:var(--t1);font-style:italic;margin-bottom:2px;line-height:1.6}
+.hl-mt{font-size:11px;color:var(--t3)}
+
+/* ── INQUIRY ── */
+.iq-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px;margin-bottom:10px}
+.iq-head{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.iq-lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.iq-body{font-size:14px;color:var(--t1);line-height:1.85}
+.iq-mono{font-family:'JetBrains Mono',monospace;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--teal);margin-top:7px}
+.curr-box{background:linear-gradient(135deg,#0c1625,#0c1e40);border:1px solid #1a3060;border-radius:var(--r2);padding:16px 18px;margin-bottom:10px}
+.curr-box h4{font-size:11px;color:#5b9cf6;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.curr-badges{display:flex;flex-wrap:wrap;gap:6px}
+.cbadge{background:#1a3460;color:#88bbff;font-size:11px;padding:3px 11px;border-radius:99px;font-weight:600}
+.cbadge.main{background:#163828;color:#5ee0a8}
+.mlist{list-style:none;display:flex;flex-direction:column;gap:8px}
+.mlist li{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border-radius:10px;padding:10px 12px}
+.mn{width:22px;height:22px;border-radius:50%;background:var(--topic-clr,var(--acc));color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mt{font-size:13px;color:var(--t1);line-height:1.7}
+
+/* ── EXPLORER ── */
+.fbanner{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:13px 18px;font-family:'JetBrains Mono',monospace;font-size:15px;text-align:center;margin-bottom:14px;letter-spacing:.06em}
+.sc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px;margin-bottom:12px}
+.sr{margin-bottom:14px}
+.sr:last-child{margin-bottom:0}
+.sh{display:flex;justify-content:space-between;margin-bottom:7px}
+.slbl{font-size:13px;color:var(--t2)}
+.sval{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--topic-clr,var(--acc))}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;background:var(--border);border-radius:99px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--topic-clr,var(--acc));box-shadow:0 0 10px color-mix(in srgb,var(--topic-clr,var(--acc)) 50%,transparent);transition:transform .15s;cursor:pointer}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.2)}
+.sticks{display:flex;justify-content:space-between;font-size:10px;color:var(--t3);margin-top:3px}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px}
+.ri{background:var(--surface);border:1px solid color-mix(in srgb,var(--topic-clr,var(--acc)) 25%,var(--border));border-radius:var(--r);padding:12px;transition:border-color .2s}
+.ri:hover{border-color:var(--topic-clr,var(--acc))}
+.rl{font-size:11px;color:var(--t3);margin-bottom:3px}
+.rv{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--topic-clr,var(--acc));line-height:1.2}
+.ru{font-size:11px;color:var(--t3);margin-top:2px}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px;margin-bottom:12px}
+.chart-ttl{font-size:11px;color:var(--t3);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+
+/* ── QUIZ ── */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:20px;margin-bottom:12px}
+.qq{font-size:15px;font-weight:700;color:var(--t0);line-height:1.6;margin-bottom:14px}
+.qrow{display:flex;gap:8px}
+.qi{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;color:var(--t0);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.qi:focus{border-color:var(--topic-clr,var(--acc))}
+.qbtn{padding:9px 16px;background:var(--topic-clr,var(--acc));color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;transition:opacity .15s}
+.qbtn:hover{opacity:.85}
+.qans{background:color-mix(in srgb,var(--teal) 8%,var(--surface));border:1px solid color-mix(in srgb,var(--teal) 35%,transparent);border-left:3px solid var(--teal);border-radius:10px;padding:14px;margin-top:10px;animation:fu .3s ease}
+.qal{font-size:11px;color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.qav{font-size:15px;font-weight:800;color:var(--t0);margin-bottom:6px}
+.qah{font-size:13px;color:var(--t2)}
+
+/* ── NAV ── */
+.nav-row{display:flex;gap:8px;margin-top:18px}
+.btn-p{flex:1;padding:12px;background:var(--surface);border:1px solid var(--border);color:var(--t2);border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;transition:background .15s}
+.btn-p:hover{background:var(--card)}
+.btn-n{flex:2;padding:12px;background:var(--topic-clr,var(--acc));color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;transition:opacity .15s,box-shadow .2s;box-shadow:0 4px 16px color-mix(in srgb,var(--topic-clr,var(--acc)) 35%,transparent)}
+.btn-n:hover{opacity:.9}
+@media(max-width:560px){.tc{grid-template-columns:1fr auto}.tc-f{display:none}.sl{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+<canvas id="hc"></canvas>
+
+<p class="hero-eyebrow">2027 수능특강 독서 · 2022 개정 교육과정 연계</p>
+<h1 class="hero-title">모두의 비문학<br><span class="g">제시문 속 수학탐구</span></h1>
+
+<div class="hero-copy-wrap">
+  <canvas id="signCanvas" width="360" height="52"></canvas>
+</div>
+
+<p class="hero-desc">
+  수능특강 과학기술 지문 속 수식을 찾고,<br>
+  <strong>2022 개정 수학 단원</strong>과 연결해 탐구 주제를 설계합니다.<br>
+  슬라이더로 변수를 바꾸며 수학적 원리를 직접 확인하세요.
+</p>
+<button class="hero-btn" onclick="enterApp()">탐구 시작하기 →</button>
+</section>
+
+<!-- ══ APP ══ -->
+<div id="app">
+  <nav id="topbar">
+    <div class="tb-logo" onclick="showHome()"><div class="tb-dot"></div><span>비문학 수학탐구</span></div>
+    <div class="tb-ttl" id="tb-ttl"></div>
+    <button class="tb-back" id="tb-back" onclick="showHome()">← 목록</button>
+  </nav>
+  <div id="home">
+    <div class="h-head reveal">
+      <h2>탐구 주제 선택</h2>
+      <p>수능특강 독서 과학기술 지문에서 수학적 표현을 찾고, 2022 개정 수학 단원과 연결해 탐구합니다.<br>
+      <strong style="color:var(--acc)">지문 분석 → 탐구 설계 → 수식 탐구 → 연습문제</strong> 4단계로 진행됩니다.</p>
+    </div>
+    <div class="tg" id="tg"></div>
+  </div>
+  <div id="detail">
+    <div class="stepper" id="stepper"></div>
+    <div id="p0" class="panel"></div>
+    <div id="p1" class="panel"></div>
+    <div id="p2" class="panel"></div>
+    <div id="p3" class="panel"></div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   HERO PARTICLE CANVAS
+════════════════════════════════════════════ */
+(function(){
+  const c=document.getElementById('hc'),ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;pts=[];for(let i=0;i<55;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.38,vy:(Math.random()-.5)*.38,r:Math.random()*2+.5});}
+  function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(123,111,255,.4)';ctx.fill();});pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<120){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(123,111,255,${(1-d/120)*.14})`;ctx.lineWidth=1;ctx.stroke();}}));requestAnimationFrame(draw);}
+  resize();draw();window.addEventListener('resize',resize);
+})();
+
+/* floating symbols */
+const syms=['∫','∑','∂','∞','π','√','≠','∝','λ','η','≈','Δ','∇','lim','f(x)','dy/dx'];
+for(let i=0;i<14;i++){const e=document.createElement('div');e.className='eye';e.textContent=syms[i%syms.length];e.style.cssText=`left:${Math.random()*100}%;animation-delay:${Math.random()*14}s;animation-duration:${11+Math.random()*8}s;font-size:${12+Math.random()*18}px`;document.getElementById('hero').appendChild(e);}
+
+/* ════════════════════════════════════════════
+   HANDWRITING CANVAS — "Copyright@All Teachers"
+   Canvas 2D API로 Caveat 스타일 글씨 직접 그림
+════════════════════════════════════════════ */
+(function(){
+  const canvas=document.getElementById('signCanvas');
+  const ctx=canvas.getContext('2d');
+  const text='Copyright@All Teachers';
+  const W=canvas.width,H=canvas.height;
+
+  // 각 글자를 순서대로 그려내는 애니메이션
+  ctx.font='italic 500 28px Georgia,serif';
+  ctx.fillStyle='#FFCF5C';
+  ctx.textBaseline='middle';
+
+  const totalChars=text.length;
+  let drawn=0;
+  const delay=800; // ms before start
+  const charInterval=80; // ms per char
+
+  // measure total width to center
+  const fullW=ctx.measureText(text).width;
+  const startX=(W-fullW)/2;
+
+  function drawUpTo(n){
+    ctx.clearRect(0,0,W,H);
+    // subtle glow
+    ctx.shadowColor='rgba(255,207,92,.5)';
+    ctx.shadowBlur=8;
+    ctx.fillStyle='rgba(255,207,92,1)';
+    ctx.font='italic 500 26px Georgia,serif';
+    ctx.textBaseline='middle';
+
+    // draw char by char with slight wobble
+    let x=startX;
+    for(let i=0;i<n;i++){
+      const ch=text[i];
+      const wobbleY=Math.sin(i*1.3)*2.5; // vertical wobble per char
+      const wobbleR=(Math.random()*.04-.02); // tiny rotation
+      ctx.save();
+      ctx.translate(x,H/2+wobbleY);
+      ctx.rotate(wobbleR);
+      ctx.fillText(ch,0,0);
+      ctx.restore();
+      x+=ctx.measureText(ch).width+0.5;
+    }
+    ctx.shadowBlur=0;
+  }
+
+  // Pre-measure with wobble=0 for x positions (once)
+  const xPos=[];
+  {let x=startX;for(let i=0;i<totalChars;i++){xPos.push(x);x+=ctx.measureText(text[i]).width+0.5;}}
+
+  function drawUpToFast(n){
+    ctx.clearRect(0,0,W,H);
+    ctx.shadowColor='rgba(255,207,92,.45)';
+    ctx.shadowBlur=8;
+    ctx.fillStyle='rgba(255,207,92,1)';
+    ctx.font='italic 500 26px Georgia,serif';
+    ctx.textBaseline='middle';
+    for(let i=0;i<n;i++){
+      const wobbleY=Math.sin(i*1.3)*2.4;
+      ctx.save();
+      ctx.translate(xPos[i],H/2+wobbleY);
+      ctx.fillText(text[i],0,0);
+      ctx.restore();
+    }
+    ctx.shadowBlur=0;
+  }
+
+  // Animate
+  setTimeout(()=>{
+    const id=setInterval(()=>{
+      drawn++;
+      drawUpToFast(drawn);
+      if(drawn>=totalChars)clearInterval(id);
+    },charInterval);
+  },delay);
+})();
+
+/* ════════════════════════════════════════════
+   DATA — 수능특강 독서 과학기술 지문 기반
+════════════════════════════════════════════ */
+const TOPICS=[
+  {
+    id:'lens',category:'물리·광학',source:'2027 수능특강 독서 — 과학기술 01',
+    title:'볼록 렌즈와 역수 관계',badge:'역수 관계·분수',color:'#A78BFA',
+    formula:'1/f = 1/a + 1/b',
+    curriculum:{
+      grade:'수학Ⅱ',main:'수학Ⅱ — 함수의 극한',
+      units:['함수의 극한과 연속','다항함수의 미분법'],
+      concepts:['분수함수 y=k/x','역수 관계 탐구','lim 극한값 분석']
+    },
+    passage:[
+      {t:'볼록 렌즈에서 물체까지의 거리를 a, 상까지의 거리를 b, 초점 거리를 f라 하면 '},
+      {t:'렌즈 공식 1/f = 1/a + 1/b 가 성립한다.',h:true,hl:'#A78BFA',note:'핵심 수식 → 분수의 합 형태, a·b·f 역수 관계'},
+      {t:' 볼록 렌즈에 빛이 평행하게 입사하면 초점에 모이고, '},
+      {t:'물체가 초점 밖에 위치할 때 실상이 맺히며',h:true,hl:'#60A5FA',note:'a > f 조건 → b > 0 (실상) 부등식 탐구'},
+      {t:' 이때 배율 m = b/a 로 정의된다. '},
+      {t:'물체가 초점 안쪽(a < f)이면 허상으로 확대되어 보인다.',h:true,hl:'#34D399',note:'a < f → b < 0 (허상) → 부등식·부호 분석'}
+    ],
+    inquiry:{
+      question:'물체 거리 a가 초점 거리 f보다 클 때, a를 변화시키면 상 거리 b는 어떻게 달라질까? 두 변수 사이의 함수 관계를 분수함수로 표현할 수 있을까?',
+      hypothesis:'1/f=1/a+1/b에서 b=af/(a-f)로 정리되므로, a→f⁺일 때 b→∞, a→∞일 때 b→f인 분수함수 형태다.',
+      mathKey:'b = af/(a−f) → 분수함수, 수직 점근선 a=f, 수평 점근선 b=f',
+      method:['f=10cm로 고정, a=12,15,20,30,50cm에서 b=af/(a-f) 계산한다.','b vs a 그래프를 그려 점근선을 확인한다.','배율 m=b/a 도 함께 계산해 a가 커질수록 m→1 임을 확인한다.','a→f⁺(a=10.1)일 때 b가 어떻게 변하는지 극한으로 분석한다.','실제 렌즈 실험 결과와 함수 값을 비교한다.']
+    },
+    vars:[{name:'물체 거리 a',key:'a',unit:'cm',min:11,max:60,def:20,step:1}],
+    fConst:{f:10},
+    compute(v){
+      const f=this.fConst.f,a=v.a;
+      const b=a*f/(a-f);
+      const m=Math.abs(b/a);
+      return[
+        {label:'상 거리 b',val:b.toFixed(2),unit:'cm'},
+        {label:'배율 m=|b/a|',val:m.toFixed(3),unit:''},
+        {label:'a > f 조건',val:a>f?'✅ 실상':'❌ 허상',unit:''},
+        {label:'b/f 비율',val:(b/f).toFixed(3),unit:''}
+      ];
+    },
+    drawChart(svg,v){
+      const W=300,H=140,f=10;
+      svg.setAttribute('viewBox',`0 0 ${W} ${H+28}`);
+      let html='';
+      [30,60,90].forEach(yv=>{const py=H-Math.min(yv/100,1)*H;html+=`<line x1="0" y1="${py.toFixed(1)}" x2="${W}" y2="${py.toFixed(1)}" stroke="#1E2434" stroke-width="1"/>`;html+=`<text x="3" y="${(py-3).toFixed(1)}" font-size="8" fill="#2E3448">${yv}</text>`;});
+      html+=`<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#2E3448"/>`;
+      const px=x=>((x-11)/49)*W;
+      const py=y=>H-Math.min(Math.abs(y),100)/100*H;
+      const pts=[];
+      for(let a=11.2;a<=60;a+=.4){const b=a*f/(a-f);if(b>0&&b<200)pts.push(`${px(a).toFixed(1)},${py(b).toFixed(1)}`);}
+      html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#A78BFA" stroke-width="2.5"/>`;
+      // asymptote at a=f=10 (left edge)
+      html+=`<line x1="${px(11).toFixed(1)}" y1="0" x2="${px(11).toFixed(1)}" y2="${H}" stroke="#A78BFA" stroke-width="1" stroke-dasharray="4,3" opacity=".4"/>`;
+      // horizontal asymptote b=f=10
+      const pb=H-Math.min(f/100)*H; // f=10
+      html+=`<line x1="0" y1="${(H-f).toFixed(1)}" x2="${W}" y2="${(H-f).toFixed(1)}" stroke="#FFD166" stroke-width="1" stroke-dasharray="4,3" opacity=".4"/>`;
+      html+=`<text x="${W-3}" y="${(H-f-3).toFixed(1)}" font-size="8" fill="#FFD166" text-anchor="end">b→f</text>`;
+      const cx=px(v.a),cy=py(v.a*f/(v.a-f));
+      html+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="6" fill="#A78BFA"/>`;
+      html+=`<text x="${cx.toFixed(1)}" y="${H+18}" font-size="9" fill="#A78BFA" text-anchor="middle">a=${v.a}</text>`;
+      html+=`<text x="3" y="${H+18}" font-size="9" fill="#2E3448">11</text>`;
+      html+=`<text x="${W-3}" y="${H+18}" font-size="9" fill="#2E3448" text-anchor="end">60</text>`;
+      svg.innerHTML=html;
+    },
+    questions:[
+      {q:'초점 거리 f=10cm, 물체 거리 a=15cm일 때 상 거리 b는?',a:'30cm',hint:'b=15×10/(15−10)=150/5=30'},
+      {q:'f=10, a=15일 때 배율 m=|b/a|는?',a:'2배',hint:'m=|30/15|=2 (실제보다 2배 확대된 실상)'}
+    ]
+  },
+
+  {
+    id:'dna',category:'생물·화학',source:'2027 수능특강 독서 — 과학기술 02',
+    title:'DNA 복제와 지수함수',badge:'지수함수',color:'#34D399',
+    formula:'N(t) = N₀ · 2^t',
+    curriculum:{
+      grade:'수학Ⅰ',main:'수학Ⅰ — 지수함수와 로그함수',
+      units:['지수함수와 로그함수','수열'],
+      concepts:['지수함수 y=aˣ 그래프','로그 변환으로 선형화','배증 시간(doubling time)']
+    },
+    passage:[
+      {t:'PCR(중합 효소 연쇄 반응)은 DNA의 특정 구간을 '},
+      {t:'각 반응 사이클마다 두 배로 증폭시키는',h:true,hl:'#34D399',note:'1사이클 → ×2, 지수적 증가 N=N₀·2ⁿ'},
+      {t:' 기술이다. '},
+      {t:'n번의 사이클을 거치면 이론적으로 2ⁿ배로 증폭',h:true,hl:'#60A5FA',note:'지수함수: n이 1 증가할 때마다 양이 2배씩 증가'},
+      {t:'되어 처음 DNA 양이 매우 적더라도 충분한 양의 DNA를 얻을 수 있다. 이를 활용해 '},
+      {t:'유전자 검사, 범죄 수사, 감염 진단 등에 활용',h:true,hl:'#F472B6',note:'응용 맥락: 지수 증가는 현실에서 강력한 증폭 수단'},
+      {t:'된다.'}
+    ],
+    inquiry:{
+      question:'PCR 사이클 수 n이 증가할 때 DNA 복제 수는 얼마나 빠르게 증가할까? log를 이용하면 어떻게 선형으로 표현할 수 있을까?',
+      hypothesis:'N=2ⁿ이므로 n=10에서 약 1000배, n=20에서 약 100만 배가 된다. log₂N=n이므로 로그 그래프에서 직선이 된다.',
+      mathKey:'N=2ⁿ → log₂N=n (지수↔로그 변환, 선형화)',
+      method:['n=0~30에서 N=2ⁿ 계산 (처음 양 N₀=1 기준).','그래프: 원래 N vs n (지수 곡선), log₂N vs n (직선).','배증 시간 개념: 일반 증가율 r일 때 배증 시간 t₂=log(2)/log(1+r).','n=30일 때 DNA가 몇 개인지 10의 몇 제곱인지 계산.','실제 PCR은 효율 e<100%이므로 N=N₀·(2e)ⁿ으로 수정.']
+    },
+    vars:[{name:'사이클 수 n',key:'n',unit:'회',min:0,max:40,def:20,step:1}],
+    compute(v){
+      const N=Math.pow(2,v.n);
+      const log10N=v.n*Math.log10(2);
+      return[
+        {label:'DNA 복제 수 2ⁿ',val:N>1e15?`≈10^${log10N.toFixed(1)}`:N.toLocaleString(),unit:'개(상대)'},
+        {label:'log₁₀(2ⁿ)',val:log10N.toFixed(3),unit:''},
+        {label:'10의 몇 제곱',val:log10N.toFixed(1),unit:'승(≈)'},
+        {label:'1μL에서 시작 시',val:`≈${(N*1e-6).toExponential(2)}`,unit:'mL분량'}
+      ];
+    },
+    drawChart(svg,v){
+      const W=300,H=140;
+      svg.setAttribute('viewBox',`0 0 ${W} ${H+28}`);
+      let html='';
+      const maxLog=40*Math.log10(2);
+      [3,6,9,12].forEach(yv=>{const py=H-(yv/maxLog)*H;html+=`<line x1="0" y1="${py.toFixed(1)}" x2="${W}" y2="${py.toFixed(1)}" stroke="#1E2434" stroke-width="1"/>`;html+=`<text x="3" y="${(py-3).toFixed(1)}" font-size="8" fill="#2E3448">10^${yv}</text>`;});
+      html+=`<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#2E3448"/>`;
+      const pts=[];
+      for(let n=0;n<=40;n+=.5){const x=(n/40)*W;const y=H-(n*Math.log10(2)/maxLog)*H;pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);}
+      html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#34D399" stroke-width="2.5"/>`;
+      const cx=(v.n/40)*W,cy=H-(v.n*Math.log10(2)/maxLog)*H;
+      html+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="6" fill="#34D399"/>`;
+      html+=`<line x1="${cx.toFixed(1)}" y1="${H}" x2="${cx.toFixed(1)}" y2="${cy.toFixed(1)}" stroke="#34D399" stroke-width="1" stroke-dasharray="3,2"/>`;
+      html+=`<text x="${cx.toFixed(1)}" y="${H+18}" font-size="9" fill="#34D399" text-anchor="middle">n=${v.n}</text>`;
+      html+=`<text x="3" y="${H+18}" font-size="9" fill="#2E3448">0</text>`;
+      html+=`<text x="${W-3}" y="${H+18}" font-size="9" fill="#2E3448" text-anchor="end">40</text>`;
+      html+=`<text x="${W-3}" y="12" font-size="8" fill="#34D399" text-anchor="end">log₁₀N vs n (직선)</text>`;
+      svg.innerHTML=html;
+    },
+    questions:[
+      {q:'PCR 30사이클 후 DNA는 처음의 약 몇 배인가? (2^10≈10³ 활용)',a:'약 10억 배 (2^30≈10^9)',hint:'2^30 = (2^10)^3 ≈ (10^3)^3 = 10^9'},
+      {q:'log₂(N)=35일 때 사이클 수 n은?',a:'35회',hint:'N=2ⁿ → log₂N=n=35'}
+    ]
+  },
+
+  {
+    id:'fluid',category:'물리·유체',source:'2027 수능특강 독서 — 과학기술 03',
+    title:'베르누이 법칙과 이차함수',badge:'이차함수·연립',color:'#60A5FA',
+    formula:'P + ½ρv² + ρgh = 상수',
+    curriculum:{
+      grade:'수학',main:'공통수학 — 방정식과 부등식',
+      units:['이차방정식','연립방정식'],
+      concepts:['이차식 ½ρv² 비교','에너지 보존 이항·이차항 정리','속도비와 단면적비 관계']
+    },
+    passage:[
+      {t:'유체가 흐를 때 연속 방정식에 의해 '},
+      {t:'좁은 단면에서 유속이 빨라진다.',h:true,hl:'#60A5FA',note:'A₁v₁=A₂v₂ (연속 방정식) → 반비례 관계'},
+      {t:' 베르누이 법칙은 '},
+      {t:'P + ½ρv² + ρgh = 일정',h:true,hl:'#FFD166',note:'에너지 보존 표현 → ½ρv² 항이 이차식'},
+      {t:'을 나타내는 원리로, '},
+      {t:'유속이 빠른 곳에서 압력이 낮아진다.',h:true,hl:'#F472B6',note:'v↑ → ½ρv²↑ → P↓ (역관계, 이차함수 탐구)'},
+      {t:' 이 원리는 비행기 양력, 야구공 커브, 분무기 등 다양한 곳에 적용된다.'}
+    ],
+    inquiry:{
+      question:'두 지점의 높이가 같고(h₁=h₂) 단면적이 다를 때, 속도 차이에 따른 압력 차이를 이차식으로 표현할 수 있을까?',
+      hypothesis:'h₁=h₂이면 P₁+½ρv₁²=P₂+½ρv₂² → ΔP=½ρ(v₂²−v₁²). 이차식이므로 v₂가 2배가 되면 ΔP는 4배 증가.',
+      mathKey:'ΔP = ½ρ(v₂²−v₁²) → v₂에 관한 이차함수, v₁ 고정 시 ΔP∝v₂²',
+      method:['v₁=2m/s 고정, v₂를 0~10m/s로 변화시키며 ΔP 계산.','ΔP=½×1000×(v₂²−4) 이차함수 그래프를 그린다.','v₂=2v₁일 때 ΔP가 처음의 몇 배인지 계산: ΔP∝v₂² 이므로 4배.','연속 방정식 A₁v₁=A₂v₂ 대입: ΔP를 단면적비로 표현.','압력 단위(Pa)와 수두(m)를 연결해 실생활 의미 파악.']
+    },
+    vars:[{name:'유속 v₂',key:'v2',unit:'m/s',min:2,max:15,def:6,step:.5}],
+    fConst:{v1:2,rho:1000},
+    compute(v){
+      const v1=this.fConst.v1,rho=this.fConst.rho;
+      const dP=0.5*rho*(v.v2**2-v1**2);
+      return[
+        {label:'압력차 ΔP',val:dP.toFixed(0),unit:'Pa'},
+        {label:'ΔP/ΔP₀(v₂=4)',val:(dP/(0.5*rho*(16-4))).toFixed(3),unit:'배'},
+        {label:'½ρv₂²',val:(0.5*rho*v.v2**2).toFixed(0),unit:'Pa'},
+        {label:'v₂/v₁',val:(v.v2/v1).toFixed(2),unit:'배'}
+      ];
+    },
+    drawChart(svg,v){
+      const W=300,H=140,v1=2,rho=1000;
+      svg.setAttribute('viewBox',`0 0 ${W} ${H+28}`);
+      let html='';
+      const maxdP=0.5*rho*(15**2-4);
+      [0.25,.5,.75].forEach(frac=>{const py=H-frac*H;const label=Math.round(frac*maxdP/1000);html+=`<line x1="0" y1="${py.toFixed(1)}" x2="${W}" y2="${py.toFixed(1)}" stroke="#1E2434" stroke-width="1"/>`;html+=`<text x="3" y="${(py-3).toFixed(1)}" font-size="8" fill="#2E3448">${label}kPa</text>`;});
+      html+=`<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#2E3448"/>`;
+      const pts=[];
+      for(let v2=2;v2<=15;v2+=.1){const x=((v2-2)/13)*W;const dp=0.5*rho*(v2**2-v1**2);const y=H-Math.min(dp/maxdP,1)*H;pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);}
+      html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#60A5FA" stroke-width="2.5"/>`;
+      const cx=((v.v2-2)/13)*W,dp=0.5*rho*(v.v2**2-v1**2);
+      const cy=H-Math.min(dp/maxdP,1)*H;
+      html+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="6" fill="#60A5FA"/>`;
+      html+=`<line x1="${cx.toFixed(1)}" y1="${H}" x2="${cx.toFixed(1)}" y2="${cy.toFixed(1)}" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>`;
+      html+=`<text x="${cx.toFixed(1)}" y="${H+18}" font-size="9" fill="#60A5FA" text-anchor="middle">v₂=${v.v2}</text>`;
+      html+=`<text x="3" y="${H+18}" font-size="9" fill="#2E3448">2</text>`;
+      html+=`<text x="${W-3}" y="${H+18}" font-size="9" fill="#2E3448" text-anchor="end">15m/s</text>`;
+      svg.innerHTML=html;
+    },
+    questions:[
+      {q:'v₁=2m/s, v₂=6m/s, ρ=1000kg/m³일 때 압력차 ΔP는?',a:'16000 Pa',hint:'ΔP=½×1000×(36−4)=500×32=16000'},
+      {q:'v₂가 2배가 되면 ½ρv₂²는 몇 배가 되는가?',a:'4배',hint:'½ρ(2v)²=4×½ρv² → 이차함수 특성'}
+    ]
+  },
+
+  {
+    id:'seismic',category:'지구과학',source:'2027 수능특강 독서 — 과학기술 04',
+    title:'지진파 속도와 도착 시간 차',badge:'일차함수·연립',color:'#FBBF24',
+    formula:'t = d / v  →  Δt = d(1/v_S − 1/v_P)',
+    curriculum:{
+      grade:'수학',main:'공통수학 — 방정식과 부등식',
+      units:['일차방정식','연립방정식','부등식'],
+      concepts:['속도·거리·시간 관계','연립방정식으로 진앙 거리 계산','PS시 활용']
+    },
+    passage:[
+      {t:'지진이 발생하면 P파(종파)와 S파(횡파)가 동시에 출발한다. '},
+      {t:'P파의 속도는 S파보다 빠르므로',h:true,hl:'#FBBF24',note:'v_P > v_S → P파 먼저 도착 → Δt 발생'},
+      {t:' 관측소에서 P파가 먼저 도착하고 S파가 늦게 도착한다. '},
+      {t:'두 파의 도착 시간 차(PS시)를 이용하면 진앙까지의 거리를 계산',h:true,hl:'#F472B6',note:'Δt = d/v_S − d/v_P → d 를 구하는 일차방정식'},
+      {t:'할 수 있다. '},
+      {t:'PS시 Δt = d·(1/v_S − 1/v_P)',h:true,hl:'#34D399',note:'미지수 d에 대한 일차방정식, 관측값 Δt 이용'}
+    ],
+    inquiry:{
+      question:'PS시(Δt)와 P파·S파 속도를 알면 진앙 거리 d를 어떻게 구할까? 3개 관측소를 이용하면 진앙을 어떻게 특정할 수 있을까?',
+      hypothesis:'Δt=d(1/v_S−1/v_P)에서 d=Δt/(1/v_S−1/v_P)로 구해진다. 3개 관측소에서 원을 그리면 교점이 진앙이 된다.',
+      mathKey:'d = Δt / (1/v_S − 1/v_P) — 일차방정식 해. 원의 방정식 세 개 연립 → 진앙 좌표',
+      method:['v_P=8km/s, v_S=4km/s 설정 → 1/v_S−1/v_P=1/8.','Δt=1,5,10,20s에 대해 d 계산 → 일차 비례 관계 확인.','슬라이더로 Δt를 조정하며 d가 어떻게 달라지는지 관찰.','세 관측소 A,B,C에서 d_A,d_B,d_C를 구한 후 원 교점으로 진앙 결정.','지진 규모와 진앙 거리로 피해 범위를 추산하는 방법 탐구.']
+    },
+    vars:[{name:'PS시 Δt',key:'dt',unit:'초',min:1,max:60,def:10,step:1}],
+    fConst:{vP:8,vS:4},
+    compute(v){
+      const vP=this.fConst.vP,vS=this.fConst.vS;
+      const coeff=1/vS-1/vP; // 1/4-1/8 = 1/8
+      const d=v.dt/coeff;
+      return[
+        {label:'진앙 거리 d',val:d.toFixed(1),unit:'km'},
+        {label:'P파 도착 시간',val:(d/vP).toFixed(2),unit:'초'},
+        {label:'S파 도착 시간',val:(d/vS).toFixed(2),unit:'초'},
+        {label:'검증: t_S−t_P',val:v.dt.toFixed(0),unit:'초=Δt ✅'}
+      ];
+    },
+    drawChart(svg,v){
+      const W=300,H=140,vP=8,vS=4;
+      svg.setAttribute('viewBox',`0 0 ${W} ${H+28}`);
+      let html='';
+      const coeff=1/vS-1/vP;
+      const maxD=60/coeff;
+      [0.25,.5,.75].forEach(f=>{const y=H-f*H;const dv=Math.round(f*maxD);html+=`<line x1="0" y1="${y.toFixed(1)}" x2="${W}" y2="${y.toFixed(1)}" stroke="#1E2434" stroke-width="1"/>`;html+=`<text x="3" y="${(y-3).toFixed(1)}" font-size="8" fill="#2E3448">${dv}km</text>`;});
+      html+=`<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#2E3448"/>`;
+      const pts=[];
+      for(let dt=0;dt<=60;dt+=.5){const x=(dt/60)*W;const d=dt/coeff;const y=H-(d/maxD)*H;pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);}
+      html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#FBBF24" stroke-width="2.5"/>`;
+      const cx=(v.dt/60)*W,cy=H-((v.dt/coeff)/maxD)*H;
+      html+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="6" fill="#FBBF24"/>`;
+      html+=`<line x1="${cx.toFixed(1)}" y1="${H}" x2="${cx.toFixed(1)}" y2="${cy.toFixed(1)}" stroke="#FBBF24" stroke-width="1" stroke-dasharray="3,2"/>`;
+      html+=`<text x="${cx.toFixed(1)}" y="${H+18}" font-size="9" fill="#FBBF24" text-anchor="middle">Δt=${v.dt}s</text>`;
+      html+=`<text x="3" y="${H+18}" font-size="9" fill="#2E3448">0</text>`;
+      html+=`<text x="${W-3}" y="${H+18}" font-size="9" fill="#2E3448" text-anchor="end">60s</text>`;
+      html+=`<text x="${W-3}" y="12" font-size="8" fill="#FBBF24" text-anchor="end">d = 8·Δt (기울기=8)</text>`;
+      svg.innerHTML=html;
+    },
+    questions:[
+      {q:'v_P=8km/s, v_S=4km/s, Δt=20초일 때 진앙 거리 d는?',a:'160km',hint:'d=Δt/(1/4−1/8)=20/(1/8)=160'},
+      {q:'진앙 거리 d=240km일 때 PS시 Δt는?',a:'30초',hint:'Δt=240×(1/4−1/8)=240×1/8=30'}
+    ]
+  },
+
+  {
+    id:'heat',category:'열역학',source:'2027 수능특강 독서 — 과학기술 05',
+    title:'열전도와 비례·반비례',badge:'비례·반비례',color:'#FF6B9D',
+    formula:"Q/t = k·A·ΔT / d",
+    curriculum:{
+      grade:'수학Ⅱ',main:'수학Ⅱ — 함수의 극한',
+      units:['함수의 극한과 연속'],
+      concepts:['비례·반비례 관계 탐구','이변수 함수 변화율 비교','단위 분석과 비례 상수']
+    },
+    passage:[
+      {t:'열이 물체를 통해 전달되는 열전도의 양은 '},
+      {t:'온도 차에 비례하고',h:true,hl:'#FF6B9D',note:'Q/t ∝ ΔT — 정비례, 기울기=kA/d'},
+      {t:' '},
+      {t:'두께에 반비례한다.',h:true,hl:'#A78BFA',note:'Q/t ∝ 1/d — 반비례, 역수함수'},
+      {t:' 또한 '},
+      {t:'단면적이 넓을수록 열전도량이 증가한다.',h:true,hl:'#34D399',note:'Q/t ∝ A — 정비례'},
+      {t:' 이를 수식으로 나타내면 Q/t = kAΔT/d 이고, k는 열전도율이라는 물질 고유 상수다.'}
+    ],
+    inquiry:{
+      question:'두께 d와 단면적 A를 바꾸면 시간당 열전도량 Q/t는 어떻게 변할까? 각 변수별로 정비례·반비례 관계를 수식으로 표현하고 그래프로 확인할 수 있을까?',
+      hypothesis:'k=1, ΔT=30℃ 고정 시, Q/t=A/d 이므로 A 고정 시 Q/t∝1/d (반비례), d 고정 시 Q/t∝A (정비례)다.',
+      mathKey:'Q/t = kAΔT/d — d에 대한 반비례(쌍곡선), A에 대한 정비례(직선)',
+      method:['k=1, ΔT=30, A=1m² 고정 후 d=1~10cm에서 Q/t 계산.','k=1, ΔT=30, d=5cm 고정 후 A=0.5~5m²에서 Q/t 계산.','두 그래프 모두 그려 정비례vs반비례 형태 차이를 시각 비교.','k값이 다른 두 물질(유리 k=1, 단열재 k=0.04)의 Q/t 비교.','건물 단열재의 최적 두께를 결정하는 경제적 문제와 연결.']
+    },
+    vars:[
+      {name:'두께 d',key:'d',unit:'cm',min:1,max:20,def:5,step:.5},
+      {name:'단면적 A',key:'A',unit:'m²',min:.5,max:5,def:1,step:.5}
+    ],
+    fConst:{k:1,dT:30},
+    compute(v){
+      const k=this.fConst.k,dT=this.fConst.dT;
+      const Q=k*v.A*dT/(v.d/100);
+      return[
+        {label:'Q/t (열전도율)',val:Q.toFixed(1),unit:'W'},
+        {label:'d 2배 시 Q/t',val:(k*v.A*dT/(v.d*2/100)).toFixed(1),unit:'W (절반)'},
+        {label:'A 2배 시 Q/t',val:(k*v.A*2*dT/(v.d/100)).toFixed(1),unit:'W (2배)'},
+        {label:'kAΔT/d 비례 관계',val:Q>0?'✅ 확인':'',unit:''}
+      ];
+    },
+    drawChart(svg,v){
+      const W=300,H=140,k=1,dT=30,A=v.A;
+      svg.setAttribute('viewBox',`0 0 ${W} ${H+28}`);
+      let html='';
+      const maxQ=k*A*dT/(0.01); // d=1cm
+      [.25,.5,.75].forEach(f=>{const y=H-f*H;const qv=Math.round(f*maxQ);html+=`<line x1="0" y1="${y.toFixed(1)}" x2="${W}" y2="${y.toFixed(1)}" stroke="#1E2434" stroke-width="1"/>`;html+=`<text x="3" y="${(y-3).toFixed(1)}" font-size="8" fill="#2E3448">${qv}</text>`;});
+      html+=`<line x1="0" y1="${H}" x2="${W}" y2="${H}" stroke="#2E3448"/>`;
+      const pts=[];
+      for(let d=1;d<=20;d+=.2){const x=((d-1)/19)*W;const q=k*A*dT/(d/100);const y=H-Math.min(q/maxQ,1)*H;pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);}
+      html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#FF6B9D" stroke-width="2.5"/>`;
+      const cx=((v.d-1)/19)*W,cy=H-Math.min((k*A*dT/(v.d/100))/maxQ,1)*H;
+      html+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="6" fill="#FF6B9D"/>`;
+      html+=`<line x1="${cx.toFixed(1)}" y1="${H}" x2="${cx.toFixed(1)}" y2="${cy.toFixed(1)}" stroke="#FF6B9D" stroke-width="1" stroke-dasharray="3,2"/>`;
+      html+=`<text x="${cx.toFixed(1)}" y="${H+18}" font-size="9" fill="#FF6B9D" text-anchor="middle">d=${v.d}cm</text>`;
+      html+=`<text x="3" y="${H+18}" font-size="9" fill="#2E3448">1</text>`;
+      html+=`<text x="${W-3}" y="${H+18}" font-size="9" fill="#2E3448" text-anchor="end">20cm</text>`;
+      html+=`<text x="${W-3}" y="12" font-size="8" fill="#FF6B9D" text-anchor="end">Q/t ∝ 1/d (반비례)</text>`;
+      svg.innerHTML=html;
+    },
+    questions:[
+      {q:'k=1, A=2m², ΔT=30℃, d=10cm(0.1m)일 때 Q/t는?',a:'600W',hint:'Q/t=1×2×30/0.1=600'},
+      {q:'두께를 3배로 늘리면 열전도량은 몇 배가 되는가?',a:'1/3배',hint:'Q/t∝1/d, d가 3배 → Q/t는 1/3배'}
+    ]
+  }
+];
+
+/* ════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════ */
+let curTopic=null,curStep=0,slVals={},quizShown={};
+
+function enterApp(){
+  document.getElementById('hero').style.display='none';
+  const app=document.getElementById('app');
+  app.classList.add('on');
+  buildHome();
+  setTimeout(()=>{document.querySelectorAll('.reveal').forEach(el=>{const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target);}});},{threshold:.1});o.observe(el);});},50);
+}
+
+function showHome(){
+  curTopic=null;
+  document.getElementById('home').style.display='block';
+  document.getElementById('detail').classList.remove('show');
+  document.getElementById('tb-back').classList.remove('show');
+  document.getElementById('tb-ttl').textContent='';
+}
+
+function buildHome(){
+  const g=document.getElementById('tg');g.innerHTML='';
+  TOPICS.forEach(t=>{
+    const c=document.createElement('div');c.className='tc reveal';
+    c.style.setProperty('--tc-clr',t.color);
+    c.innerHTML=`
+      <div class="tc-f" style="color:${t.color};border-color:${t.color}33">${t.formula}</div>
+      <div class="tc-m">
+        <div class="tc-tags">
+          <span class="tag" style="background:${t.color}18;color:${t.color}">${t.badge}</span>
+          <span class="tag" style="background:#1a3060;color:#88bbff">${t.curriculum.main}</span>
+          <span class="tag" style="background:#1E2434;color:#4A5070">${t.category} · ${t.source}</span>
+        </div>
+        <div class="tc-nm">${t.title}</div>
+        <div class="tc-sb">${t.curriculum.concepts[0]}</div>
+      </div>
+      <div class="tc-ar">›</div>
+    `;
+    c.onclick=()=>openTopic(t);
+    g.appendChild(c);
+    setTimeout(()=>c.classList.add('in'),10);
+  });
+}
+
+function openTopic(t){
+  curTopic=t;curStep=0;quizShown={};slVals={};
+  t.vars.forEach(v=>{slVals[v.key]=v.def;});
+  document.getElementById('home').style.display='none';
+  const det=document.getElementById('detail');det.classList.add('show');
+  document.getElementById('tb-back').classList.add('show');
+  document.getElementById('tb-ttl').textContent=`${t.category} · ${t.title}`;
+  det.style.setProperty('--topic-clr',t.color);
+  buildStepper();buildAllPanels();setStep(0);
+  det.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function buildStepper(){
+  const steps=['지문 분석','탐구 설계','수식 탐구','연습문제'];
+  const icons=['🔍','💡','🧮','✏️'];
+  const s=document.getElementById('stepper');
+  s.style.setProperty('--sc-clr',curTopic.color);s.innerHTML='';
+  steps.forEach((lbl,i)=>{
+    const item=document.createElement('div');item.className='si';
+    item.innerHTML=`<div class="sc" id="sc-${i}" onclick="setStep(${i})">${icons[i]}</div><div class="sl" id="sl-${i}">${lbl}</div>`;
+    s.appendChild(item);
+    if(i<steps.length-1){const l=document.createElement('div');l.className='sline';l.id=`sln-${i}`;s.appendChild(l);}
+  });
+}
+
+function setStep(n){
+  curStep=n;
+  for(let i=0;i<4;i++){
+    const c=document.getElementById(`sc-${i}`),l=document.getElementById(`sl-${i}`);
+    if(!c)continue;
+    c.classList.remove('active','done');l.classList.remove('active');
+    if(i<n)c.classList.add('done');
+    else if(i===n){c.classList.add('active');l.classList.add('active');}
+    if(i<3){const line=document.getElementById(`sln-${i}`);if(line)line.classList.toggle('done',i<n);}
+  }
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+}
+
+function buildAllPanels(){buildP0();buildP1();buildP2();buildP3();}
+
+/* PANEL 0 */
+function buildP0(){
+  const t=curTopic,p=document.getElementById('p0');
+  const pHTML=t.passage.map((seg,i)=>{
+    if(!seg.h)return`<span>${seg.t}</span>`;
+    const c=seg.hl||'#FFD166';
+    return`<mark class="hl" style="--hl-clr:${c}">${seg.t}<span class="hl-tp" style="--hl-clr:${c}">${seg.note}</span></mark>`;
+  }).join('');
+  const hls=t.passage.filter(s=>s.h);
+  const hlListHTML=hls.map((seg,i)=>`
+    <div class="hl-item">
+      <div class="hl-n" style="background:${seg.hl||'#FFD166'}22;color:${seg.hl||'#FFD166'}">${i+1}</div>
+      <div><div class="hl-tx">"${seg.t.trim()}"</div><div class="hl-mt">→ ${seg.note}</div></div>
+    </div>
+  `).join('');
+  p.innerHTML=`
+    <div class="passage-box">
+      <div style="font-size:11px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">📄 ${t.source}</div>
+      <p style="margin:0">${pHTML}</p>
+    </div>
+    <div class="hl-list"><div class="hl-lt">🔍 발견한 수학적 표현</div>${hlListHTML}</div>
+    <div class="nav-row"><button class="btn-n" onclick="setStep(1)" style="flex:1">탐구 설계 단계로 →</button></div>
+  `;
+}
+
+/* PANEL 1 */
+function buildP1(){
+  const t=curTopic,p=document.getElementById('p1');
+  const mHTML=t.inquiry.method.map((m,i)=>`<li><div class="mn" style="background:${t.color}">${i+1}</div><div class="mt">${m}</div></li>`).join('');
+  const uB=t.curriculum.units.map(u=>`<span class="cbadge">${u}</span>`).join('');
+  const cB=t.curriculum.concepts.map(c=>`<span style="font-size:11px;padding:3px 10px;background:var(--surface);border:1px solid var(--border);border-radius:99px;color:var(--t2)">${c}</span>`).join('');
+  p.innerHTML=`
+    <div class="iq-card"><div class="iq-head"><span>❓</span><span class="iq-lbl" style="color:#A78BFA">탐구 질문</span></div><div class="iq-body">${t.inquiry.question}</div></div>
+    <div class="iq-card"><div class="iq-head"><span>💡</span><span class="iq-lbl" style="color:#34D399">가설</span></div><div class="iq-body">${t.inquiry.hypothesis}</div></div>
+    <div class="curr-box">
+      <h4>📚 2022 개정 교육과정 연계</h4>
+      <div style="margin-bottom:8px"><span class="cbadge main">${t.curriculum.main}</span></div>
+      <div class="curr-badges">${uB}</div>
+      <div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:5px">${cB}</div>
+    </div>
+    <div class="iq-card"><div class="iq-head"><span>🧮</span><span class="iq-lbl" style="color:${t.color}">핵심 수학 개념</span></div><div class="iq-mono">${t.inquiry.mathKey}</div></div>
+    <div class="iq-card"><div class="iq-head"><span>📋</span><span class="iq-lbl" style="color:var(--t2)">탐구 방법</span></div><ul class="mlist">${mHTML}</ul></div>
+    <div class="nav-row"><button class="btn-p" onclick="setStep(0)">← 지문</button><button class="btn-n" onclick="setStep(2)" style="background:${t.color}">직접 계산 →</button></div>
+  `;
+}
+
+/* PANEL 2 */
+function buildP2(){
+  const t=curTopic,p=document.getElementById('p2');
+  const slHTML=t.vars.map(v=>`
+    <div class="sr">
+      <div class="sh"><span class="slbl">${v.name} <span style="color:var(--t3);font-size:11px">(${v.unit})</span></span><span class="sval" id="sv-${v.key}" style="color:${t.color}">${v.def}</span></div>
+      <input type="range" id="sl-${v.key}" min="${v.min}" max="${v.max}" step="${v.step}" value="${v.def}" oninput="onSlider('${v.key}',this.value)" style="--topic-clr:${t.color}">
+      <div class="sticks"><span>${v.min}</span><span>${v.max}</span></div>
+    </div>
+  `).join('');
+  p.innerHTML=`
+    <div class="fbanner" id="p2-f" style="border-color:${t.color}33;color:${t.color}">${t.formula}</div>
+    <div class="sc-card">${slHTML}</div>
+    <div class="rg" id="rg" style="--topic-clr:${t.color}"></div>
+    <div class="chart-card"><div class="chart-ttl">그래프</div><svg id="chart-svg" style="width:100%"></svg></div>
+    <div class="nav-row"><button class="btn-p" onclick="setStep(1)">← 탐구 설계</button><button class="btn-n" onclick="setStep(3)" style="background:${t.color}">연습문제 →</button></div>
+  `;
+  updateCalc();
+}
+
+function onSlider(key,val){slVals[key]=Number(val);document.getElementById(`sv-${key}`).textContent=val;updateCalc();}
+
+function updateCalc(){
+  const t=curTopic;if(!t)return;
+  const res=t.compute(slVals);
+  const g=document.getElementById('rg');if(!g)return;
+  g.innerHTML=res.map(r=>`<div class="ri"><div class="rl">${r.label}</div><div class="rv" style="color:${t.color}">${r.val}</div>${r.unit?`<div class="ru">${r.unit}</div>`:''}</div>`).join('');
+  const svg=document.getElementById('chart-svg');if(svg)t.drawChart(svg,slVals);
+}
+
+/* PANEL 3 */
+function buildP3(){
+  const t=curTopic,p=document.getElementById('p3');
+  const qHTML=t.questions.map((q,i)=>`
+    <div class="qcard" id="qc-${i}">
+      <div class="qq">Q${i+1}. ${q.q}</div>
+      <div class="qrow">
+        <input class="qi" id="qi-${i}" placeholder="풀이 또는 답을 입력하세요...">
+        <button class="qbtn" onclick="revealQuiz(${i})" style="background:${t.color}">확인</button>
+      </div>
+      <div id="qa-${i}" style="display:none" class="qans">
+        <div class="qal">정답</div>
+        <div class="qav" id="qa-v-${i}"></div>
+        <div class="qah" id="qa-h-${i}"></div>
+      </div>
+    </div>
+  `).join('');
+  p.innerHTML=`${qHTML}<div class="nav-row"><button class="btn-p" onclick="setStep(2)">← 수식 탐구</button><button class="btn-p" onclick="setStep(0)" style="flex:1">↩ 처음부터</button></div>`;
+}
+
+function revealQuiz(i){
+  const t=curTopic,q=t.questions[i],d=document.getElementById(`qa-${i}`);
+  document.getElementById(`qa-v-${i}`).textContent=q.a;
+  document.getElementById(`qa-h-${i}`).textContent='💡 '+q.hint;
+  d.style.display='block';
+}
+</script>
+</body>
+</html>
