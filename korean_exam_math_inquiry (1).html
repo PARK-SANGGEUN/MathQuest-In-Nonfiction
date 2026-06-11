@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수능 국어 비문학 수학탐구</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080B10;--surface:#0F1219;--card:#151923;--border:#1C2230;
+  --muted:#263042;--t3:#3E5070;--t2:#6880A8;--t1:#A8B8D8;--t0:#E8EEF8;
+  --acc:#FF6B35;--acc2:#FFB347;--teal:#00E5CC;--blue:#4488FF;--violet:#9966FF;
+  --r:.75rem;--r2:1.25rem;--shadow:0 8px 32px rgba(0,0,0,.6);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t0);font-family:'Noto Sans KR',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--surface)}::-webkit-scrollbar-thumb{background:var(--muted);border-radius:9px}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:40px 20px;text-align:center}
+#hc{position:absolute;inset:0;pointer-events:none}
+.float-sym{position:absolute;font-family:'JetBrains Mono',monospace;opacity:.05;pointer-events:none;animation:floatUp 16s linear infinite}
+@keyframes floatUp{0%{transform:translateY(110vh) rotate(0deg);opacity:0}8%{opacity:.06}92%{opacity:.06}100%{transform:translateY(-10vh) rotate(360deg);opacity:0}}
+.hero-badge{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:16px;position:relative;z-index:1;border:1px solid var(--border);display:inline-block;padding:4px 14px;border-radius:99px}
+.hero-title{font-size:clamp(2rem,5.5vw,3.8rem);font-weight:900;letter-spacing:-.03em;line-height:1.08;margin-bottom:16px;position:relative;z-index:1}
+.hero-title .g{background:linear-gradient(110deg,var(--acc),var(--acc2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-title .g2{background:linear-gradient(110deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{max-width:520px;color:var(--t2);font-size:14px;line-height:1.9;margin-bottom:40px;position:relative;z-index:1}
+.hero-sub em{color:var(--acc2);font-style:normal;font-weight:600}
+.hero-sub strong{color:var(--teal);font-weight:600}
+.hero-stats{display:flex;gap:24px;margin-bottom:42px;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px 20px;text-align:center}
+.stat-n{font-size:24px;font-weight:900;font-family:'JetBrains Mono',monospace}
+.stat-l{font-size:11px;color:var(--t3);margin-top:2px}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(115deg,var(--acc),var(--acc2));color:#fff;padding:15px 36px;border-radius:99px;font-size:15px;font-weight:800;cursor:pointer;border:none;position:relative;z-index:1;transition:transform .2s,box-shadow .2s;box-shadow:0 0 40px rgba(255,107,53,.4);font-family:inherit}
+.hero-btn:hover{transform:translateY(-3px);box-shadow:0 6px 50px rgba(255,107,53,.6)}
+
+/* APP */
+#app{display:none;min-height:100vh}#app.on{display:block}
+#topbar{position:sticky;top:0;z-index:100;background:rgba(8,11,16,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;height:56px;gap:14px}
+.tb-logo{font-weight:900;font-size:13px;color:var(--t0);cursor:pointer;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.tb-pip{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 8px var(--acc)}
+.tb-ttl{flex:1;font-size:12px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-back{background:var(--border);border:none;color:var(--t2);padding:5px 13px;border-radius:99px;cursor:pointer;font-size:12px;font-family:inherit;transition:background .15s;display:none}
+.tb-back:hover{background:var(--muted)}.tb-back.show{display:block}
+
+/* HOME */
+#home{max-width:900px;margin:0 auto;padding:40px 20px 80px}
+.h-head{margin-bottom:32px}
+.h-head h2{font-size:24px;font-weight:900;margin-bottom:8px}
+.h-head p{font-size:13px;color:var(--t2);line-height:1.75}
+.section-label{font-size:10px;color:var(--t3);font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:28px 0 12px;padding-left:3px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.tg{display:grid;gap:10px}
+.tc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:16px 18px;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:0 14px;align-items:center;transition:transform .18s,border-color .2s,box-shadow .18s;position:relative;overflow:hidden}
+.tc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tc-clr,var(--acc));border-radius:0 3px 3px 0}
+.tc:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--tc-clr,var(--acc)) 40%,var(--border));box-shadow:var(--shadow)}
+.tc-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:color-mix(in srgb,var(--tc-clr,var(--acc)) 12%,var(--surface))}
+.tc-m{display:flex;flex-direction:column;gap:3px;min-width:0}
+.tc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px}
+.tag{font-size:10px;padding:2px 9px;border-radius:99px;font-weight:700;letter-spacing:.02em}
+.tc-nm{font-size:14px;font-weight:700;color:var(--t0)}.tc-sb{font-size:11px;color:var(--t3)}
+.tc-ar{color:var(--muted);font-size:18px;transition:transform .2s,color .2s}.tc:hover .tc-ar{transform:translateX(4px);color:var(--t2)}
+
+/* DETAIL */
+#detail{display:none;max-width:800px;margin:0 auto;padding:28px 20px 80px}#detail.show{display:block}
+.stepper{display:flex;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 18px;margin-bottom:24px;gap:0;overflow-x:auto}
+.si{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
+.sc{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;border:2px solid var(--border);color:var(--t3);background:var(--surface);cursor:pointer;transition:all .25s}
+.sc.active{background:var(--sc-clr,var(--acc));border-color:var(--sc-clr,var(--acc));color:#fff;box-shadow:0 0 18px color-mix(in srgb,var(--sc-clr,var(--acc)) 50%,transparent)}
+.sc.done{background:var(--sc-clr,var(--acc));border-color:var(--sc-clr,var(--acc));color:#fff;opacity:.5}
+.sl-lbl{font-size:10px;color:var(--t3);white-space:nowrap}.sl-lbl.active{color:var(--sc-clr,var(--acc));font-weight:700}
+.sline{flex:1;height:2px;background:var(--border);margin:0 5px;margin-bottom:14px;min-width:18px;transition:background .3s}.sline.done{background:var(--sc-clr,var(--acc));opacity:.5}
+.panel{display:none;animation:fu .3s ease}.panel.active{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* PASSAGE */
+.exam-tag{display:inline-block;font-size:10px;padding:3px 10px;background:color-mix(in srgb,var(--topic-clr,var(--acc)) 15%,var(--surface));color:var(--topic-clr,var(--acc));border-radius:99px;font-weight:700;margin-bottom:12px}
+.passage-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:22px;margin-bottom:14px;font-size:14px;line-height:2.2;color:var(--t1);position:relative}
+.passage-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;background:var(--topic-clr,var(--acc))}
+mark.hl{background:transparent;border-bottom:2.5px solid var(--hl-clr,var(--acc2));color:var(--t0);font-weight:600;cursor:pointer;border-radius:2px;padding:1px 2px;position:relative;transition:background .15s}
+mark.hl:hover{background:color-mix(in srgb,var(--hl-clr,var(--acc2)) 14%,transparent)}
+.hl-tp{position:absolute;bottom:calc(100%+8px);left:50%;transform:translateX(-50%);background:#1a1e30;border:1px solid var(--hl-clr,var(--acc2));color:var(--t0);font-size:12px;padding:7px 12px;border-radius:8px;white-space:nowrap;z-index:99;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,.6);display:none;max-width:240px;white-space:normal}
+.hl-tp::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--hl-clr,var(--acc2))}
+mark.hl:hover .hl-tp{display:block}
+.hl-list{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:18px;margin-bottom:14px}
+.hl-lt{font-size:11px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.hl-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}.hl-item:last-child{border-bottom:none;padding-bottom:0}
+.hl-n{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
+.hl-tx{font-size:13px;color:var(--t1);font-style:italic;margin-bottom:2px;line-height:1.6}.hl-mt{font-size:11px;color:var(--t3)}
+
+/* INQUIRY */
+.iq-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px;margin-bottom:10px}
+.iq-head{display:flex;align-items:center;gap:9px;margin-bottom:10px}.iq-lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.iq-body{font-size:14px;color:var(--t1);line-height:1.85}
+.curr-box{background:linear-gradient(135deg,#0a1520,#0c1e30);border:1px solid #1a3050;border-radius:var(--r2);padding:16px 18px;margin-bottom:10px}
+.curr-box h4{font-size:11px;color:#5a9cf0;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.curr-badges{display:flex;flex-wrap:wrap;gap:6px}
+.cbadge{background:#1a3050;color:#80aaff;font-size:11px;padding:3px 11px;border-radius:99px;font-weight:600}
+.cbadge.main{background:#163525;color:#50d890}
+.mlist{list-style:none;display:flex;flex-direction:column;gap:8px}
+.mlist li{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border-radius:10px;padding:10px 12px}
+.mn{width:22px;height:22px;border-radius:50%;background:var(--topic-clr,var(--acc));color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mt{font-size:13px;color:var(--t1);line-height:1.7}
+.iq-mono{font-family:'JetBrains Mono',monospace;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--teal);margin-top:7px}
+
+/* CALC */
+.fbanner{background:var(--surface);border:1px solid color-mix(in srgb,var(--topic-clr,var(--acc)) 30%,var(--border));border-radius:var(--r);padding:13px 18px;font-family:'JetBrains Mono',monospace;font-size:14px;text-align:center;margin-bottom:14px;letter-spacing:.04em;color:var(--topic-clr,var(--acc))}
+.sc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px;margin-bottom:12px}
+.sr{margin-bottom:14px}.sr:last-child{margin-bottom:0}
+.sh{display:flex;justify-content:space-between;margin-bottom:7px}
+.slbl{font-size:13px;color:var(--t2)}.sval{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--topic-clr,var(--acc))}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;background:var(--border);border-radius:99px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--topic-clr,var(--acc));box-shadow:0 0 10px color-mix(in srgb,var(--topic-clr,var(--acc)) 50%,transparent);transition:transform .15s;cursor:pointer}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.2)}
+.sticks{display:flex;justify-content:space-between;font-size:10px;color:var(--t3);margin-top:3px}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px}
+.ri{background:var(--surface);border:1px solid color-mix(in srgb,var(--topic-clr,var(--acc)) 20%,var(--border));border-radius:var(--r);padding:12px;transition:border-color .2s}
+.ri:hover{border-color:var(--topic-clr,var(--acc))}
+.rl{font-size:11px;color:var(--t3);margin-bottom:3px}.rv{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--topic-clr,var(--acc));line-height:1.2}.ru{font-size:11px;color:var(--t3);margin-top:2px}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px;margin-bottom:12px}
+.chart-ttl{font-size:11px;color:var(--t3);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+
+/* QUIZ */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:20px;margin-bottom:12px}
+.qq{font-size:14px;font-weight:700;color:var(--t0);line-height:1.65;margin-bottom:14px}.qrow{display:flex;gap:8px}
+.qi{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;color:var(--t0);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}.qi:focus{border-color:var(--topic-clr,var(--acc))}
+.qbtn{padding:9px 16px;background:var(--topic-clr,var(--acc));color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;transition:opacity .15s;white-space:nowrap}.qbtn:hover{opacity:.85}
+.qans{background:color-mix(in srgb,var(--teal) 8%,var(--surface));border:1px solid color-mix(in srgb,var(--teal) 30%,transparent);border-left:3px solid var(--teal);border-radius:10px;padding:14px;margin-top:10px;animation:fu .3s ease}
+.qal{font-size:11px;color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}.qav{font-size:14px;font-weight:800;color:var(--t0);margin-bottom:6px}.qah{font-size:13px;color:var(--t2)}
+.nav-row{display:flex;gap:8px;margin-top:18px}
+.btn-p{flex:1;padding:12px;background:var(--surface);border:1px solid var(--border);color:var(--t2);border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;transition:background .15s}.btn-p:hover{background:var(--card)}
+.btn-n{flex:2;padding:12px;background:var(--topic-clr,var(--acc));color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;transition:opacity .15s,box-shadow .2s;box-shadow:0 4px 16px color-mix(in srgb,var(--topic-clr,var(--acc)) 35%,transparent)}.btn-n:hover{opacity:.9}
+@media(max-width:560px){.tc{grid-template-columns:auto 1fr auto}.sl-lbl{display:none}}
+</style>
+</head>
+<body>
+
+<section id="hero">
+<canvas id="hc"></canvas>
+<p class="hero-badge">2026 모의고사·수능 모평 + 2027 수능특강 국어/독서/언어와 매체/화법과 작문</p>
+<h1 class="hero-title">국어 비문학<br><span class="g">속 수학 탐구</span></h1>
+<p class="hero-sub">
+  <em>3월·5월 모의고사·6월 모평</em>과 <strong>2027 수능특강</strong>(독서·언어와 매체·화법과 작문) 지문에 숨어 있는<br>
+  수학적 구조를 발견하고 <strong>2022 개정 수학 단원</strong>과 연결합니다.<br>
+  슬라이더로 변수를 직접 조작하며 원리를 확인하세요.
+</p>
+<div class="hero-stats">
+  <div class="stat-box"><div class="stat-n" style="color:var(--acc)">17</div><div class="stat-l">탐구 주제</div></div>
+  <div class="stat-box"><div class="stat-n" style="color:var(--blue)">6</div><div class="stat-l">출처 (모의+수능특강)</div></div>
+  <div class="stat-box"><div class="stat-n" style="color:var(--teal)">4</div><div class="stat-l">단계 학습</div></div>
+</div>
+<button class="hero-btn" onclick="enterApp()">탐구 시작하기 →</button>
+</section>
+
+<div id="app">
+  <nav id="topbar">
+    <div class="tb-logo" onclick="showHome()"><div class="tb-pip"></div><span>국어 수학탐구</span></div>
+    <div class="tb-ttl" id="tb-ttl"></div>
+    <button class="tb-back" id="tb-back" onclick="showHome()">← 목록</button>
+  </nav>
+  <div id="home">
+    <div class="h-head">
+      <h2>탐구 주제 선택</h2>
+      <p>3월·5월 모의고사 및 6월 모의평가 국어 지문에서 수학적 구조를 발견하고 2022 개정 수학 단원과 연결합니다.<br>
+      <strong style="color:var(--acc)">지문 분석 → 탐구 설계 → 수식 탐구 → 연습문제</strong></p>
+    </div>
+    <div class="tg" id="tg"></div>
+  </div>
+  <div id="detail">
+    <div class="stepper" id="stepper"></div>
+    <div id="p0" class="panel"></div>
+    <div id="p1" class="panel"></div>
+    <div id="p2" class="panel"></div>
+    <div id="p3" class="panel"></div>
+  </div>
+</div>
+
+<script>
+/* HERO CANVAS */
+(function(){
+  const c=document.getElementById('hc'),ctx=c.getContext('2d');let W,H,pts=[];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;pts=[];for(let i=0;i<50;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*2+.4});}
+  function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(255,107,53,.35)';ctx.fill();});pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<110){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(255,107,53,${(1-d/110)*.12})`;ctx.lineWidth=1;ctx.stroke();}}));requestAnimationFrame(draw);}
+  resize();draw();window.addEventListener('resize',resize);
+})();
+const syms=['∑','∫','lim','log','P(A)','n!','r%','Δ','∝','%','×','≥','≤','≠','⊂','∈'];
+for(let i=0;i<16;i++){const e=document.createElement('div');e.className='float-sym';e.textContent=syms[i%syms.length];e.style.cssText=`left:${Math.random()*100}%;animation-delay:${Math.random()*16}s;animation-duration:${12+Math.random()*8}s;font-size:${14+Math.random()*20}px;color:var(--acc)`;document.getElementById('hero').appendChild(e);}
+
+/* ─────────────────────────────────────────────────
+   TOPICS — 2026 모의고사 국어 지문 기반
+───────────────────────────────────────────────── */
+const TOPICS=[
+
+{
+  id:'astigmatism_optics',
+  exam:'5월 모의고사',
+  category:'물리 지문',
+  source:'2026학년도 5월 고3 전국연합학력평가 국어 — [10~13] 비점 수차 지문',
+  title:'비점 격차와 광축 거리의 제곱 관계',
+  badge:'이차함수·비례',
+  emoji:'🔬',
+  color:'#FF6B35',
+  formula:'비점 격차 D ∝ r²   (r: 광축까지 거리)',
+  curriculum:{grade:'공통수학',main:'공통수학 — 함수',
+    units:['이차함수','함수의 그래프'],
+    concepts:['이차함수 y=ax²','비례 관계 k 결정','거리의 제곱 변화 분석']},
+  passage:[
+    {t:'자오 상점과 구결 상점 사이의 거리인 비점 격차가 커질수록 비점 수차는 심해진다. '},
+    {t:'비점 격차는 물체점에서 광축까지의 거리의 제곱, 즉 물체점에서 광축까지 수직으로 그은 선의 길이의 제곱에 비례한다.',h:true,hl:'#FF6B35',note:'D = k·r²  → y = ax² 형태의 이차 관계'},
+    {t:' '},
+    {t:'비점 격차가 커질수록 일차상의 길이와 이차상의 길이는 길어진다.',h:true,hl:'#FFB347',note:'선분 상의 길이 ∝ D = k·r²  (연동 비례)'},
+    {t:' '},
+    {t:'비점 격차가 클수록 최소 착란원은 크기가 커지면서 흐려진다.',h:true,hl:'#00E5CC',note:'착란원 크기 ∝ D ∝ r²  (같은 이차 관계)'}
+  ],
+  inquiry:{
+    question:'물체점이 광축에서 r만큼 떨어져 있을 때 비점 격차 D=kr²이라 하자. 물체점을 P₀→P₁로 옮겨 거리가 2배가 되면 비점 격차는 몇 배가 될까?',
+    hypothesis:'r이 2배 되면 D = k(2r)² = 4kr² → 비점 격차는 4배가 된다.',
+    mathKey:'D = kr²  →  D₂/D₁ = (r₂/r₁)²  (제곱 비례)',
+    method:['D = k·r² 공식에서 k는 렌즈 고유 상수.','r₁에서의 비점 격차 D₁ = k·r₁² 계산.','r₂ = n·r₁이면 D₂ = k·(n·r₁)² = n²·D₁.','그래프: r(x축) vs D(y축) → 포물선 y = kx².','P₀(2배) → P₂(절반): D₄배, D(1/4)배 관계 확인.']
+  },
+  vars:[
+    {name:'기준 거리 r₀ (단위)',key:'r0',unit:'unit',min:1,max:10,def:3,step:1},
+    {name:'비례 상수 k',key:'k',unit:'',min:1,max:10,def:4,step:1},
+    {name:'비교 거리 배수 n',key:'n',unit:'배',min:0.5,max:4,def:2,step:0.5}
+  ],
+  compute(v){
+    const D0=v.k*v.r0*v.r0;
+    const r1=v.n*v.r0;
+    const D1=v.k*r1*r1;
+    return[
+      {label:'기준 비점 격차 D₀',val:D0.toFixed(1),unit:''},
+      {label:'비교 거리 r₁',val:r1.toFixed(1),unit:'unit'},
+      {label:'비교 비점 격차 D₁',val:D1.toFixed(1),unit:''},
+      {label:'D₁/D₀ 비율',val:(D1/D0).toFixed(2),unit:'배'}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    const maxR=v.r0*4;const maxD=v.k*maxR*maxR;
+    const px=r=>(r/maxR)*W;const py=D=>H-20-(D/maxD)*(H-20);
+    const pts=[];for(let r=0;r<=maxR;r+=maxR/60)pts.push(`${px(r).toFixed(1)},${py(v.k*r*r).toFixed(1)}`);
+    html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#FF6B35" stroke-width="2.5"/>`;
+    // mark r0
+    const d0=v.k*v.r0*v.r0;
+    html+=`<circle cx="${px(v.r0)}" cy="${py(d0)}" r="5" fill="#FFB347"/>`;
+    html+=`<text x="${px(v.r0)+7}" y="${py(d0)-3}" font-size="9" fill="#FFB347">r₀</text>`;
+    // mark r1
+    const r1=v.n*v.r0;const d1=v.k*r1*r1;
+    html+=`<circle cx="${px(r1)}" cy="${py(d1)}" r="5" fill="#00E5CC"/>`;
+    html+=`<text x="${px(r1)+7}" y="${py(d1)-3}" font-size="9" fill="#00E5CC">r₁=${r1.toFixed(1)}</text>`;
+    html+=`<line x1="0" y1="${H-20}" x2="${W}" y2="${H-20}" stroke="#1C2230"/>`;
+    for(let i=1;i<=4;i++){const rx=px(maxR*i/4);html+=`<text x="${rx}" y="${H+12}" font-size="8" fill="#3E5070" text-anchor="middle">${(maxR*i/4).toFixed(1)}</text>`;}
+    html+=`<text x="5" y="12" font-size="9" fill="#6880A8">D = k·r²</text>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'물체점이 광축에서 r=3일 때 비점 격차가 D=36이다. 이 렌즈의 비례 상수 k는?',a:'k = D/r² = 36/9 = 4',hint:'D = kr² → k = D/r² = 36/3²'},
+    {q:'같은 렌즈에서 물체점을 r=6으로 옮기면 비점 격차는?',a:'D = 4 × 36 = 144  (4배 증가)',hint:'r이 2배 → D = k(2r)² = 4kr² → 4×36 = 144'}
+  ]
+},
+
+{
+  id:'ammonia_decomposition',
+  exam:'6월 모의평가',
+  category:'화학 지문',
+  source:'2026학년도 대학수학능력시험 6월 모의평가 — [10~13] 수소 운반체 지문',
+  title:'암모니아 분해 반응의 몰 비율',
+  badge:'비율·일차방정식',
+  emoji:'⚗️',
+  color:'#9966FF',
+  formula:'2NH₃ → N₂ + 3H₂  (몰비 2:1:3)',
+  curriculum:{grade:'공통수학',main:'공통수학 — 수와 연산',
+    units:['비와 비율','연립방정식'],
+    concepts:['비율과 비례식','연립 일차방정식','전환율 = 반응/공급']},
+  passage:[
+    {t:'암모니아에서의 수소 추출 방식으로는 전기분해, 광분해, 그리고 가장 많이 쓰이는 열분해가 있다. '},
+    {t:'암모니아 분해 반응이란 암모니아가 분해되어 질소 기체와 수소 기체를 생성하는 반응이다. '},
+    {t:'이때 반응한 암모니아, 질소 기체, 수소 기체의 몰 수의 비는 2:1:3이다.',h:true,hl:'#9966FF',note:'몰비 2:1:3 → 2x몰 NH₃ → x몰 N₂ + 3x몰 H₂'},
+    {t:' '},
+    {t:'열분해 방식을 통해서는 0.9 이상의 전환율이 얻어지는데,',h:true,hl:'#FFB347',note:'전환율 = 반응 NH₃ / 공급 NH₃ ≥ 0.9 (비율 조건)'},
+    {t:' 부반응은 거의 없다.'},
+    {t:' '},
+    {t:'전환율은 반응한 전체 암모니아의 몰 수를 공급한 암모니아의 몰 수로 나눈 값이며,',h:true,hl:'#00E5CC',note:'전환율 η = n_반응 / n_공급 (0 ≤ η ≤ 1)'},
+  ],
+  inquiry:{
+    question:'암모니아를 n₀몰 공급할 때 전환율이 η이면, 생성되는 수소 기체의 몰 수를 n₀와 η로 나타내시오. 전환율이 0.9일 때와 0.6일 때의 수소 생성량을 비교하시오.',
+    hypothesis:'반응 NH₃ = η·n₀. 2:3 비율이므로 H₂ = (3/2)×η·n₀ = 1.5ηn₀. η=0.9: H₂=1.35n₀, η=0.6: H₂=0.9n₀.',
+    mathKey:'H₂ 몰 수 = (3/2)·η·n₀  — 비율 방정식',
+    method:['반응 NH₃ = η·n₀ (전환율 정의).','NH₃:H₂ = 2:3 → H₂ = (3/2)·η·n₀.','N₂ = (1/2)·η·n₀.','η=0.9 vs η=0.6 수소 생성량 비교.','η=1(완전 반응) 기준 대비 실제 생산 효율 계산.']
+  },
+  vars:[
+    {name:'공급 NH₃ n₀ (몰)',key:'n0',unit:'mol',min:1,max:20,def:10,step:1},
+    {name:'전환율 η',key:'eta',unit:'',min:0.1,max:1.0,def:0.9,step:0.05}
+  ],
+  compute(v){
+    const nReact=v.eta*v.n0;
+    const nH2=1.5*nReact;
+    const nN2=0.5*nReact;
+    const eff=(nH2/(1.5*v.n0)*100);
+    return[
+      {label:'반응 NH₃ (몰)',val:nReact.toFixed(2),unit:'mol'},
+      {label:'생성 H₂ (몰)',val:nH2.toFixed(2),unit:'mol'},
+      {label:'생성 N₂ (몰)',val:nN2.toFixed(2),unit:'mol'},
+      {label:'이론 대비 효율',val:eff.toFixed(1),unit:'%'}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    // eta sweep
+    const pts=[];for(let e=0;e<=1;e+=0.02){
+      const H2=1.5*e*v.n0;pts.push(`${e*W},${H-20-(H2/(1.5*v.n0))*(H-20)}`);
+    }
+    html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#9966FF" stroke-width="2.5"/>`;
+    const curH2=1.5*v.eta*v.n0;
+    html+=`<circle cx="${v.eta*W}" cy="${H-20-(curH2/(1.5*v.n0))*(H-20)}" r="5" fill="#FFB347"/>`;
+    html+=`<line x1="0" y1="${H-20}" x2="${W}" y2="${H-20}" stroke="#1C2230"/>`;
+    [0,0.25,0.5,0.75,1].forEach(e=>{
+      html+=`<text x="${e*W}" y="${H+13}" font-size="8" fill="#3E5070" text-anchor="middle">η=${e}</text>`;
+    });
+    html+=`<text x="5" y="12" font-size="9" fill="#6880A8">H₂ = 1.5·η·n₀</text>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'n₀=10몰의 암모니아를 공급하고 전환율 η=0.9일 때, 생성되는 수소 기체의 몰 수는?',a:'H₂ = 1.5 × 0.9 × 10 = 13.5몰',hint:'반응 NH₃ = 0.9×10 = 9몰, H₂:NH₃ = 3:2 → H₂ = 9×(3/2)'},
+    {q:'같은 n₀에서 H₂가 6몰 생성되었다면 전환율 η는?',a:'η = H₂/(1.5×n₀) = 6/15 = 0.4',hint:'6 = 1.5·η·10 → η = 6/15 = 0.4'}
+  ]
+},
+
+{
+  id:'dat_reuptake',
+  exam:'3월 모의고사',
+  category:'생명과학 지문',
+  source:'2026학년도 3월 고3 전국연합학력평가 국어 — [10~13] 도파민 지문',
+  title:'도파민 재흡수율과 시냅스 틈 농도',
+  badge:'감소함수·지수 감쇠',
+  emoji:'💊',
+  color:'#00E5CC',
+  formula:'C(t) = C₀ × (1−r)^t  (r: 재흡수율)',
+  curriculum:{grade:'수학Ⅰ',main:'수학Ⅰ — 지수함수와 로그함수',
+    units:['지수함수','로그함수와 방정식'],
+    concepts:['지수 감소 함수 aⁿ','반감기 개념','로그로 농도 반감 시간 계산']},
+  passage:[
+    {t:'시냅스 틈으로 분비된 도파민 중 일부는 도파민 수용체에 결합하지 않고 도파민성 뉴런에 위치한 도파민 수송체(DAT)에 의해 도파민성 뉴런으로 재흡수되기도 한다. '},
+    {t:'재흡수된 도파민은 시냅스 소포에 저장되었다가 재사용되거나, 도파민 분해 효소에 의해 뉴런 안에서 분해된다.',h:true,hl:'#00E5CC',note:'재흡수 + 분해 → 시냅스 틈 도파민 농도 감소 (지수 감쇠)'},
+    {t:' '},
+    {t:'다만 모든 도파민성 뉴런에 DAT가 있는 것은 아니기 때문에',h:true,hl:'#FFB347',note:'DAT 유무 → 감쇠 속도 다름 (조건 분기)'},
+    {t:' DAT가 없는 도파민성 뉴런에서 분비된 도파민은 뉴런 밖에서 분해된다.'},
+    {t:' '},
+    {t:'시냅스 틈으로 분비된 도파민이 결합하면 도파민성 뉴런 내 신호 전달의 활성화가 억제되어 도파민 분비가 중단된다.',h:true,hl:'#9966FF',note:'자가 수용체 음성 피드백 → 농도 자기 조절 (피드백 시스템)'}
+  ],
+  inquiry:{
+    question:'시냅스 틈에 도파민 C₀이 분비되었을 때 매 시간 단위마다 r비율로 재흡수된다면, t시간 후 남은 농도 C(t)를 구하고, 농도가 C₀의 절반이 되는 반감기 t½를 로그로 표현하시오.',
+    hypothesis:'C(t) = C₀(1-r)^t, 반감기: C₀(1-r)^t½ = C₀/2 → t½ = log(1/2)/log(1-r) = -log2/log(1-r)',
+    mathKey:'C(t) = C₀·aᵗ  (a=1-r)  /  t½ = log(0.5)/log(a) = -log2/log(1-r)',
+    method:['분비량 C₀, 단위 시간당 재흡수율 r 설정.','1회 경과 후 잔류: C₁ = C₀(1-r).','t회 경과 후 잔류: C(t) = C₀(1-r)ᵗ.','반감기 구하기: (1-r)ᵗ = 0.5 → t = log0.5/log(1-r).','DAT 없는 뉴런(r=0) vs DAT 있는 뉴런 비교 그래프.']
+  },
+  vars:[
+    {name:'초기 도파민 농도 C₀',key:'C0',unit:'μM',min:1,max:20,def:10,step:1},
+    {name:'단위 시간당 재흡수율 r',key:'r',unit:'%',min:5,max:60,def:30,step:5},
+    {name:'경과 시간 t',key:'t',unit:'단위',min:1,max:20,def:5,step:1}
+  ],
+  compute(v){
+    const a=1-v.r/100;
+    const Ct=v.C0*Math.pow(a,v.t);
+    const halfLife=-Math.log(2)/Math.log(a);
+    return[
+      {label:'C(t) 잔류 농도',val:Ct.toFixed(3),unit:'μM'},
+      {label:'잔류 비율',val:((Ct/v.C0)*100).toFixed(1),unit:'%'},
+      {label:'반감기 t½',val:halfLife.toFixed(2),unit:'단위'},
+      {label:'감쇠 인자 (1-r)ᵗ',val:Math.pow(a,v.t).toFixed(4),unit:''}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    const a=1-v.r/100;const maxT=20;
+    const px=t=>t*(W/maxT);const py=C=>H-20-(C/v.C0)*(H-20);
+    const pts=[];for(let t=0;t<=maxT;t+=0.3)pts.push(`${px(t).toFixed(1)},${py(v.C0*Math.pow(a,t)).toFixed(1)}`);
+    html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#00E5CC" stroke-width="2.5"/>`;
+    // half line
+    html+=`<line x1="0" y1="${py(v.C0/2)}" x2="${W}" y2="${py(v.C0/2)}" stroke="#FFB347" stroke-width="1" stroke-dasharray="5,3"/>`;
+    html+=`<text x="${W-5}" y="${py(v.C0/2)-4}" font-size="8" fill="#FFB347" text-anchor="end">C₀/2</text>`;
+    // mark current t
+    const Ct=v.C0*Math.pow(a,v.t);
+    html+=`<circle cx="${px(v.t)}" cy="${py(Ct)}" r="5" fill="#FF6B35"/>`;
+    html+=`<text x="${px(v.t)+7}" y="${py(Ct)-3}" font-size="9" fill="#FF6B35">t=${v.t}</text>`;
+    html+=`<line x1="0" y1="${H-20}" x2="${W}" y2="${H-20}" stroke="#1C2230"/>`;
+    html+=`<text x="5" y="12" font-size="9" fill="#6880A8">C(t) = C₀·(1-r)ᵗ</text>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'C₀=10μM, r=30%일 때 t=5 후 잔류 농도 C(5)를 구하시오. (소수 셋째 자리 반올림)',a:'C(5) = 10 × 0.7⁵ = 10 × 0.16807 ≈ 1.681 μM',hint:'C(t)=C₀×(1-0.3)⁵=10×0.7⁵'},
+    {q:'같은 조건에서 반감기 t½를 로그로 나타내시오.',a:'t½ = log(1/2) / log(0.7) = -log2 / log0.7 ≈ 1.943',hint:'(0.7)^t½ = 0.5 → t½ = log₀.₇(0.5) = log0.5/log0.7'}
+  ]
+},
+
+{
+  id:'dopamine_pathway',
+  exam:'5월 모의고사',
+  category:'생명과학 지문',
+  source:'2026학년도 5월 고3 전국연합학력평가 국어 — [10~13] 도파민 지문',
+  title:'도파민 경로의 활성·억제 비율',
+  badge:'비율·조건부 확률',
+  emoji:'🧠',
+  color:'#9966FF',
+  formula:'P(운동 시작) = P(직접↑) × P(간접↓)',
+  curriculum:{grade:'수학Ⅰ',main:'수학Ⅰ — 확률',
+    units:['확률의 뜻과 활용','조건부 확률'],
+    concepts:['독립 사건의 곱셈 정리','조건부 확률 P(B|A)','두 경로의 상보적 관계']},
+  passage:[
+    {t:'흑질의 도파민성 뉴런은 선조체로 연결되어 직접 및 간접 경로를 통해 수의적 운동의 조절에 영향을 미친다. '},
+    {t:'직접 경로의 선조체 뉴런에는 D1 계열 수용체가,',h:true,hl:'#9966FF',note:'D1(흥분성): 직접 경로 활성화 → 운동 촉진'},
+    {t:' 간접 경로의 선조체 뉴런에는 D2 계열 수용체가 밀집되어 있다.'},
+    {t:' 따라서 흑질의 도파민성 뉴런에서 분비된 도파민은 '},
+    {t:'직접 경로를 활성화하고',h:true,hl:'#00E5CC',note:'직접↑ → 내측 창백핵 억제 → 시상 활성 → 운동 시작'},
+    {t:' '},
+    {t:'간접 경로는 억제하여',h:true,hl:'#FF6B35',note:'간접↓ → 내측 창백핵 활성 억제 해소 → 운동 촉진'},
+    {t:' 목표하는 운동의 시작을 수월하게 한다. '},
+    {t:'이때 반응한 암모니아, 질소 기체, 수소 기체의 몰 수의 비는 2:1:3이다.',h:true,hl:'#FFB347',note:'몰 비율 2:1:3 → 비율 개념 (수학적 표현)'}
+  ],
+  inquiry:{
+    question:'도파민이 직접 경로를 a% 활성화하고 간접 경로를 b% 억제할 때, 두 경로가 독립적이라면 운동이 시작될 확률을 어떻게 나타낼 수 있을까?',
+    hypothesis:'두 경로가 독립 사건이라 가정하면 P(운동 시작) = P(직접 활성) × P(간접 억제) = (a/100) × (b/100)이다.',
+    mathKey:'P(A∩B) = P(A)×P(B)  (독립)  /  P(운동) = p₁×p₂',
+    method:['직접 경로 활성 확률 p₁, 간접 경로 억제 확률 p₂를 설정.','두 경로가 독립 사건임을 가정.','P(운동 시작) = p₁ × p₂ (독립 사건 곱셈 정리).','도파민 농도가 낮아질 때 p₁, p₂ 감소 → P(운동) 변화 분석.','파킨슨병: 도파민↓ → p₁↓, p₂↓ → P(운동)가 급감하는 구간 확인.']
+  },
+  vars:[
+    {name:'직접 경로 활성 확률 p₁',key:'p1',unit:'%',min:10,max:100,def:80,step:5},
+    {name:'간접 경로 억제 확률 p₂',key:'p2',unit:'%',min:10,max:100,def:75,step:5},
+    {name:'도파민 공급 비율',key:'da',unit:'%',min:10,max:100,def:100,step:5}
+  ],
+  compute(v){
+    const eff=v.da/100;
+    const p1eff=v.p1*eff/100;
+    const p2eff=v.p2*eff/100;
+    const pMove=p1eff*p2eff;
+    return[
+      {label:'P(운동 시작)',val:(pMove*100).toFixed(1),unit:'%'},
+      {label:'직접 경로 실효 p₁',val:(p1eff*100).toFixed(1),unit:'%'},
+      {label:'간접 경로 실효 p₂',val:(p2eff*100).toFixed(1),unit:'%'},
+      {label:'파킨슨 위험도',val:((1-pMove)*100).toFixed(1),unit:'%'}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    const steps=[20,40,60,80,100];
+    const colors=['#9966FF','#FF6B35'];
+    // bar chart: p1 vs p2 vs product
+    const bars=[
+      {l:'직접 p₁',val:v.p1,c:'#9966FF'},
+      {l:'간접 p₂',val:v.p2,c:'#00E5CC'},
+      {l:'P(운동)',val:v.p1*v.p2*v.da/100/100,c:'#FFB347'}
+    ];
+    const bw=60,gap=(W-3*bw)/4;
+    bars.forEach((b,i)=>{
+      const x=gap+(bw+gap)*i;
+      const bh=(b.val/100)*(H-20);const y=H-20-bh;
+      html+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" fill="${b.c}" rx="5" opacity=".85"/>`;
+      html+=`<text x="${x+bw/2}" y="${y-4}" font-size="11" fill="${b.c}" text-anchor="middle" font-weight="700">${b.val.toFixed(0)}%</text>`;
+      html+=`<text x="${x+bw/2}" y="${H+12}" font-size="9" fill="#3E5070" text-anchor="middle">${b.l}</text>`;
+    });
+    html+=`<line x1="0" y1="${H-20}" x2="${W}" y2="${H-20}" stroke="#1C2230"/>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'직접 경로 활성 확률이 0.8, 간접 경로 억제 확률이 0.75일 때, 두 사건이 독립이면 P(운동 시작)는?',a:'0.8 × 0.75 = 0.6 = 60%',hint:'독립 사건: P(A∩B) = P(A) × P(B) = 0.8 × 0.75'},
+    {q:'파킨슨병으로 도파민 공급이 50%로 줄면, 위 확률에서 P(운동 시작)는 몇 %가 되는가?',a:'0.4 × 0.375 = 0.15 = 15%',hint:'p₁·p₂ 모두 0.5배로 감소: (0.8×0.5)×(0.75×0.5) = 0.4×0.375'}
+  ]
+},
+
+{
+  id:'warrant_probability',
+  exam:'3월 모의고사',
+  category:'법 지문',
+  source:'2026학년도 3월 고3 전국연합학력평가 국어 — [4~9] 영장주의·적부심사 지문',
+  title:'영장 발부·기각 확률과 사후 검증',
+  badge:'확률·베이즈 정리',
+  emoji:'⚖️',
+  color:'#4488FF',
+  formula:'P(적법|발부) = P(발부|적법)×P(적법) / P(발부)',
+  curriculum:{grade:'수학Ⅰ',main:'수학Ⅰ — 확률',
+    units:['조건부 확률','확률의 곱셈 정리'],
+    concepts:['조건부 확률 P(B|A)','전사건의 법칙','베이즈 정리 기초']},
+  passage:[
+    {t:'영장주의에 따라 수사 기관은 강제 처분을 행사하기 전에 법원에 영장을 청구해야 한다. '},
+    {t:'범죄 혐의의 상당성, 도주나 증거 인멸의 위험과 같은 구속 요건을 검증하는 절차를 강화함으로써',h:true,hl:'#4488FF',note:'구속 요건 검증 = 조건부 승인 구조 (조건 충족 시 영장 발부)'},
+    {t:' 구속 영장이 발부되는 문턱을 과거보다 실질적으로 높인 장치라 할 수 있다. '},
+    {t:'구속 적부 심사에서는 영장 발부가 적법했더라도',h:true,hl:'#FF6B35',note:'사후 조건 변화 → P(유지 | 발부 적법) < 1 (조건부 확률)'},
+    {t:' 이후 상황에서 피의자의 도주 또는 증거 인멸의 위험이 사라졌다면, 법원은 피의자의 석방을 결정한다. '},
+    {t:'이는 영장 발부라는 일회적 판단이 강제 처분의 정당성을 지속적으로 담보할 수 없다는 점을 반영한 것이다.',h:true,hl:'#00E5CC',note:'시간에 따른 조건부 확률 변화 → P(위험 | t) 감소 모델'}
+  ],
+  inquiry:{
+    question:'수사 기관이 영장을 청구할 때 실제로 범죄 혐의가 있는 경우의 비율이 p라면, 영장이 발부되었을 때 실제 혐의가 있을 확률 P(혐의 있음 | 영장 발부)은 베이즈 정리로 어떻게 계산할까?',
+    hypothesis:'P(혐의|발부) = P(발부|혐의)×P(혐의) / [P(발부|혐의)×P(혐의) + P(발부|혐의 없음)×P(혐의 없음)]',
+    mathKey:'베이즈 정리: P(A|B) = P(B|A)P(A) / P(B)  — 사후 확률',
+    method:['사전 확률 P(혐의 있음) = p 설정.','민감도 P(발부 | 혐의 있음) = sensitivity 설정.','오류율 P(발부 | 혐의 없음) = false positive rate 설정.','전사건 법칙: P(발부) = sens×p + fpr×(1-p).','베이즈 정리로 P(혐의 | 발부) 계산.']
+  },
+  vars:[
+    {name:'사전 혐의 비율 P(혐의)',key:'prior',unit:'%',min:10,max:90,def:60,step:5},
+    {name:'민감도(발부|혐의 있음)',key:'sens',unit:'%',min:50,max:99,def:85,step:1},
+    {name:'오류율(발부|혐의 없음)',key:'fpr',unit:'%',min:1,max:40,def:15,step:1}
+  ],
+  compute(v){
+    const p=v.prior/100,s=v.sens/100,f=v.fpr/100;
+    const pB=s*p+f*(1-p);
+    const posterior=s*p/pB;
+    const precision=posterior;
+    return[
+      {label:'P(혐의 | 영장 발부)',val:(posterior*100).toFixed(1),unit:'%'},
+      {label:'P(영장 발부) 전체',val:(pB*100).toFixed(1),unit:'%'},
+      {label:'오발부 비율',val:((f*(1-p)/pB)*100).toFixed(1),unit:'%'},
+      {label:'영장 신뢰도',val:precision>=0.8?'높음 ✓':precision>=0.6?'보통':'낮음 ✗',unit:''}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    const p=v.prior/100,s=v.sens/100,f=v.fpr/100;
+    const pB=s*p+f*(1-p);
+    const post=s*p/pB;
+    // Visual Bayesian rectangle
+    const hh=H-20;
+    const colW=W;
+    // prior p strip
+    html+=`<rect x="0" y="${hh*(1-p)}" width="${colW*0.45}" height="${hh*p}" fill="#4488FF" rx="0" opacity=".7"/>`;
+    html+=`<text x="${colW*0.225}" y="${hh*(1-p/2)}" font-size="9" fill="#fff" text-anchor="middle">혐의 있음 ${(p*100).toFixed(0)}%</text>`;
+    html+=`<rect x="0" y="0" width="${colW*0.45}" height="${hh*(1-p)}" fill="#2E3448" rx="0" opacity=".7"/>`;
+    html+=`<text x="${colW*0.225}" y="${hh*(1-p)/2}" font-size="9" fill="#6880A8" text-anchor="middle">혐의 없음 ${((1-p)*100).toFixed(0)}%</text>`;
+    // posterior
+    html+=`<rect x="${colW*0.55}" y="${hh*(1-post)}" width="${colW*0.45}" height="${hh*post}" fill="#00E5CC" rx="0" opacity=".8"/>`;
+    html+=`<text x="${colW*0.775}" y="${hh*(1-post/2)}" font-size="9" fill="#0A0C12" text-anchor="middle" font-weight="700">사후 ${(post*100).toFixed(1)}%</text>`;
+    html+=`<rect x="${colW*0.55}" y="0" width="${colW*0.45}" height="${hh*(1-post)}" fill="#1C2230" rx="0" opacity=".7"/>`;
+    html+=`<line x1="0" y1="${hh}" x2="${W}" y2="${hh}" stroke="#1C2230"/>`;
+    html+=`<text x="${colW*0.225}" y="${H+14}" font-size="9" fill="#3E5070" text-anchor="middle">사전 확률</text>`;
+    html+=`<text x="${colW*0.775}" y="${H+14}" font-size="9" fill="#3E5070" text-anchor="middle">사후 확률 (발부 후)</text>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'P(혐의)=0.6, P(발부|혐의)=0.85, P(발부|혐의 없음)=0.15일 때 P(발부) 전체를 계산하시오.',a:'P(발부) = 0.85×0.6 + 0.15×0.4 = 0.51 + 0.06 = 0.57',hint:'전사건 법칙: P(B) = P(B|A)P(A) + P(B|Aᶜ)P(Aᶜ)'},
+    {q:'위 조건에서 베이즈 정리로 P(혐의 있음 | 영장 발부)를 구하시오.',a:'P = 0.51 / 0.57 ≈ 0.895 = 89.5%',hint:'P(A|B) = P(B|A)×P(A) / P(B) = 0.51 / 0.57'}
+  ]
+},
+
+{
+  id:'procedural_law',
+  exam:'6월 모의평가',
+  category:'법 지문',
+  source:'2026학년도 대학수학능력시험 6월 모의평가 — [4~9] 법 모델 지문',
+  title:'임대차 분쟁 조정 참여율과 기대 비용',
+  badge:'기댓값·확률 분포',
+  emoji:'🏛️',
+  color:'#FFB347',
+  formula:'E(비용) = p·재판비용 + (1−p)·조정비용',
+  curriculum:{grade:'수학Ⅰ',main:'수학Ⅰ — 확률',
+    units:['확률분포와 기댓값','이산확률분포'],
+    concepts:['기댓값 E(X)=Σx·P(x)','두 결과의 기댓값','최적 전략 결정']},
+  passage:[
+    {t:'임대차 분쟁이 발생한 경우 이를 해결하기 위한 원칙적 절차는 법관이 주도하는 재판 절차인데, '},
+    {t:'여기서 당사자들은 각자 자신의 주장을 뒷받침할 자료를 제출해야 한다.',h:true,hl:'#FFB347',note:'재판 절차: 고정 비용 C₁ 발생 (자료 제출 의무)'},
+    {t:' 한편 분쟁 해결 절차에서 당사자들의 자유로운 의견 개진을 보장하기 위해 임대차 분쟁 조정 절차도 마련되어 있다. '},
+    {t:'이때 조정 절차를 주관하는 조정위원회가 당사자를 위해 자료를 수집해 줄 수 있다.',h:true,hl:'#00E5CC',note:'조정: 낮은 비용 C₂ < C₁ (위원회 자료 수집 지원)'},
+    {t:' '},
+    {t:'그러나 임대차 분쟁 조정 절차는 당사자들이 분쟁 해결을 위해 이 절차를 따르기로 합의해야 시작되며, 이러한 합의가 이루어지지 않으면 재판 절차를 따라야 한다.',h:true,hl:'#FF6B35',note:'합의 확률 p → 기댓값: E = p·C₂ + (1-p)·C₁'}
+  ],
+  inquiry:{
+    question:'임대인과 임차인이 합의(조정)를 선택할 확률이 p일 때, 분쟁 해결의 기대 비용 E를 계산하고, E가 최소가 되는 조건은 무엇인가?',
+    hypothesis:'E(비용) = p·C₂ + (1-p)·C₁. C₂ < C₁이므로 p가 클수록 E가 작아진다. 합의를 늘리는 것이 사회적으로 유리하다.',
+    mathKey:'E(X) = Σ xᵢ·P(xᵢ) = C₁·(1-p) + C₂·p = C₁ − p·(C₁−C₂)',
+    method:['재판 비용 C₁, 조정 비용 C₂(< C₁), 합의 확률 p 설정.','기댓값: E = (1-p)·C₁ + p·C₂.','dE/dp = -(C₁-C₂) < 0 → p↑일수록 E 감소.','p=0(합의 불가): E=C₁ / p=1(완전 합의): E=C₂.','C₁-C₂ = 절약 기대 금액, 이를 p와 함께 그래프로.']
+  },
+  vars:[
+    {name:'재판 비용 C₁ (만원)',key:'C1',unit:'만원',min:100,max:1000,def:500,step:50},
+    {name:'조정 비용 C₂ (만원)',key:'C2',unit:'만원',min:10,max:300,def:80,step:10},
+    {name:'합의 확률 p',key:'p',unit:'%',min:0,max:100,def:60,step:5}
+  ],
+  compute(v){
+    const E=v.C1*(1-v.p/100)+v.C2*(v.p/100);
+    const saving=v.C1-v.C2;
+    const expSave=saving*(v.p/100);
+    return[
+      {label:'기대 비용 E(비용)',val:E.toFixed(0),unit:'만원'},
+      {label:'기대 절약액',val:expSave.toFixed(0),unit:'만원'},
+      {label:'조정 대비 절감',val:((1-E/v.C1)*100).toFixed(1),unit:'%'},
+      {label:'비용 차이 C₁-C₂',val:(v.C1-v.C2).toFixed(0),unit:'만원'}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    // line: E vs p
+    const pts=[];
+    for(let p=0;p<=100;p+=2){
+      const E=v.C1*(1-p/100)+v.C2*(p/100);
+      const x=(p/100)*W;const y=H-20-(E/v.C1)*(H-20);
+      pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+    }
+    html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#FFB347" stroke-width="2.5"/>`;
+    // current point
+    const Ecur=v.C1*(1-v.p/100)+v.C2*(v.p/100);
+    const xc=(v.p/100)*W;const yc=H-20-(Ecur/v.C1)*(H-20);
+    html+=`<circle cx="${xc}" cy="${yc}" r="5" fill="#FF6B35"/>`;
+    html+=`<text x="${xc+7}" y="${yc-3}" font-size="9" fill="#FF6B35">E=${Ecur.toFixed(0)}</text>`;
+    html+=`<line x1="0" y1="${H-20}" x2="${W}" y2="${H-20}" stroke="#1C2230"/>`;
+    for(let i=0;i<=4;i++){html+=`<text x="${i*W/4}" y="${H+14}" font-size="8" fill="#3E5070" text-anchor="middle">p=${i*25}%</text>`;}
+    html+=`<text x="5" y="12" font-size="9" fill="#6880A8">E = C₁ − p(C₁−C₂)</text>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'C₁=500만원, C₂=80만원, 합의 확률 p=0.6일 때 기대 비용 E를 구하시오.',a:'E = 500×0.4 + 80×0.6 = 200 + 48 = 248만원',hint:'E = C₁(1-p) + C₂·p = 500×0.4 + 80×0.6'},
+    {q:'같은 조건에서 합의 확률을 p=0.8로 높이면 기대 절약액은 얼마나 늘어나는가?',a:'절약 증가 = (C₁-C₂)×(0.8-0.6) = 420×0.2 = 84만원',hint:'E 감소량 = (C₁-C₂)×Δp = (500-80)×0.2 = 84만원'}
+  ]
+},
+
+{
+  id:'water_footprint',
+  exam:'3월 모의고사',
+  category:'환경 지문',
+  source:'2026학년도 3월 고3 전국연합학력평가 국어 — [43~45] 물 발자국 초고',
+  title:'국가 물 발자국: 내·외부 비율과 수자원 의존도',
+  badge:'비율·퍼센트 분석',
+  emoji:'💧',
+  color:'#00E5CC',
+  formula:'외부 의존도 = 외부 물 발자국 / 총 물 발자국 × 100',
+  curriculum:{grade:'공통수학',main:'공통수학 — 수와 연산',
+    units:['비율과 백분율','통계 그래프'],
+    concepts:['백분율 계산','비율 비교','원그래프 해석']},
+  passage:[
+    {t:'국가 물 발자국은 국가 내 모든 소비 대상의 물 발자국을 합산한 것으로, 이때 '},
+    {t:'자국의 수자원 사용량은 내부 물 발자국,',h:true,hl:'#00E5CC',note:'내부 W_in: 자국 수자원 소비량 (비율 = W_in/W_총)'},
+    {t:' '},
+    {t:'타국의 수자원 사용량은 외부 물 발자국으로 표시된다.',h:true,hl:'#4488FF',note:'외부 W_ex: 수입 제품 통해 소비 (외존도 = W_ex/W_총)'},
+    {t:' 국가에서는 이 수치를 활용하여 국외 수자원 의존도를 파악하고 국가별 특성에 부합하는 수자원 정책을 마련한다. '},
+    {t:'국가 물 발자국 중 외부 물 발자국 비중이 크다는 것은 한 국가의 소비가 제품을 생산하는 다른 국가의 환경적 부담을 가중시키고 수자원 고갈을 초래하는 등의 문제를 일으킬 수 있음을 뜻한다.',h:true,hl:'#FFB347',note:'외부 비중↑ → 타국 수자원 부담↑ (비례 관계)'}
+  ],
+  inquiry:{
+    question:'A국의 내부 물 발자국 W_in=97, B국 W_in=78, C국 W_in=80(단위: %)이라면 각국의 외부 의존도는? 외부 의존도가 가장 높은 나라와 낮은 나라를 비교하시오.',
+    hypothesis:'외부 의존도 = 100 - W_in(%). A국: 3%, B국: 22%, C국: 20%. B국이 가장 높음. 외부 의존도가 높을수록 타국 수자원 사용 비율이 크다.',
+    mathKey:'외존도(%) = 100 − 내부비율  /  W_ex = W_총 − W_in',
+    method:['각국 내부 물 발자국 비율 W_in 입력.','외부 비율 = 100 - W_in.','막대·원 그래프로 국가별 비교.','외존도가 20% 넘으면 수자원 정책 강화 필요.','절대량 비교: 총 물 발자국(상대값)×외존도.']
+  },
+  vars:[
+    {name:'A국 내부 비율 W_in',key:'a',unit:'%',min:50,max:100,def:97,step:1},
+    {name:'B국 내부 비율 W_in',key:'b',unit:'%',min:50,max:100,def:78,step:1},
+    {name:'C국 내부 비율 W_in',key:'c',unit:'%',min:50,max:100,def:80,step:1}
+  ],
+  compute(v){
+    const ea=100-v.a,eb=100-v.b,ec=100-v.c;
+    const maxC=ea>=eb&&ea>=ec?'A국':eb>=ea&&eb>=ec?'B국':'C국';
+    return[
+      {label:'A국 외부 의존도',val:ea.toFixed(0),unit:'%'},
+      {label:'B국 외부 의존도',val:eb.toFixed(0),unit:'%'},
+      {label:'C국 외부 의존도',val:ec.toFixed(0),unit:'%'},
+      {label:'최고 의존국',val:maxC,unit:''}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=140;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    const data=[
+      {l:'A국',in:v.a,ex:100-v.a,ci:'#00E5CC',ce:'#FFB347'},
+      {l:'B국',in:v.b,ex:100-v.b,ci:'#4488FF',ce:'#FF6B35'},
+      {l:'C국',in:v.c,ex:100-v.c,ci:'#9966FF',ce:'#FFB347'}
+    ];
+    const bw=70,gap=(W-3*bw)/4;
+    data.forEach((d,i)=>{
+      const x=gap+(bw+gap)*i;
+      const binh=(d.in/100)*(H-20);const bexh=(d.ex/100)*(H-20);
+      html+=`<rect x="${x}" y="${H-20-binh}" width="${bw}" height="${binh}" fill="${d.ci}" rx="0" opacity=".8"/>`;
+      html+=`<rect x="${x}" y="${H-20-binh-bexh}" width="${bw}" height="${bexh}" fill="${d.ce}" rx="0" opacity=".7"/>`;
+      html+=`<text x="${x+bw/2}" y="${H-20-binh-bexh/2}" font-size="10" fill="#fff" text-anchor="middle" font-weight="700">${d.ex}%</text>`;
+      html+=`<text x="${x+bw/2}" y="${H-20-binh/2}" font-size="10" fill="#080B10" text-anchor="middle">${d.in}%</text>`;
+      html+=`<text x="${x+bw/2}" y="${H+13}" font-size="10" fill="#3E5070" text-anchor="middle">${d.l}</text>`;
+    });
+    html+=`<line x1="0" y1="${H-20}" x2="${W}" y2="${H-20}" stroke="#1C2230"/>`;
+    html+=`<text x="5" y="12" font-size="9" fill="#6880A8">■ 외부(수입)  ■ 내부(자국)</text>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'A국 내부 비율 97%, B국 78%, C국 80%일 때 세 나라 외부 의존도의 평균을 구하시오.',a:'(3+22+20)/3 = 45/3 = 15%',hint:'외부 의존도: A=3, B=22, C=20 → 평균 = 45/3'},
+    {q:'B국의 총 물 발자국이 100억 m³이라면 외부 물 발자국은 몇 억 m³인가?',a:'22억 m³ (= 100 × 0.22)',hint:'외부 = 총 × 외존도 = 100 × (22/100)'}
+  ]
+},
+
+{
+  id:'joint_ownership',
+  exam:'5월 모의고사',
+  category:'법 지문',
+  source:'2026학년도 5월 고3 전국연합학력평가 국어 — [14~17] 집합건물법·구분소유권 지문',
+  title:'공용부분 지분 비율과 의결권',
+  badge:'비율·분수 계산',
+  emoji:'🏢',
+  color:'#4488FF',
+  formula:'지분 비율 = 전유면적 / 전체 전유면적 합',
+  curriculum:{grade:'공통수학',main:'공통수학 — 수와 연산',
+    units:['분수와 비율','비례식'],
+    concepts:['비율 계산','가중 평균','의결권 분배']},
+  passage:[
+    {t:'공용부분의 지분은 해당 구분소유자의 전유부분의 면적이 전체 전유부분의 면적에서 차지하는 비율로 결정되며, '},
+    {t:'공용부분으로 인한 수익과 비용 역시 공용부분의 지분 비율에 따른다.',h:true,hl:'#4488FF',note:'지분 = 전유면적 / 전체합 → 비율 개념'},
+    {t:' '},
+    {t:'관리단에서 각 구분소유자의 의결권은 규약에 특별한 규정이 없는 한, 전유부분의 면적 비율에 따라 결정된다.',h:true,hl:'#00E5CC',note:'의결권 = 지분 = 전유면적 비율 (가중치 투표)'},
+    {t:' '},
+    {t:'○○ 아파트는 고층일수록 각 호실의 전유부분 면적이 더 넓다.',h:true,hl:'#FFB347',note:'고층 → 넓은 면적 → 높은 지분 비율 (단조 증가 관계)'}
+  ],
+  inquiry:{
+    question:'3개 호실의 전유면적이 각각 a, b, c(m²)일 때 각 호실의 지분과 의결권 비율을 계산하시오. 지분이 가장 큰 호실이 50% 이상의 의결권을 갖는 조건은?',
+    hypothesis:'지분₁ = a/(a+b+c). 최대 지분이 50% 초과 → a/(a+b+c) > 0.5 → a > b+c.',
+    mathKey:'지분ᵢ = aᵢ / Σaᵢ  /  과반수 조건: aₘₐₓ > Σ나머지',
+    method:['각 호실 면적 a₁, a₂, a₃ 입력.','전체 합 S = a₁+a₂+a₃.','지분ᵢ = aᵢ/S.','최대 지분 확인: max지분 > 0.5 이면 단독 과반수.','관리비 배분: 월 관리비 × 지분ᵢ.']
+  },
+  vars:[
+    {name:'1호 전유면적 a₁',key:'a1',unit:'m²',min:30,max:200,def:60,step:5},
+    {name:'2호 전유면적 a₂',key:'a2',unit:'m²',min:30,max:200,def:80,step:5},
+    {name:'3호 전유면적 a₃',key:'a3',unit:'m²',min:30,max:200,def:120,step:5}
+  ],
+  compute(v){
+    const S=v.a1+v.a2+v.a3;
+    const s1=v.a1/S,s2=v.a2/S,s3=v.a3/S;
+    const maxS=Math.max(s1,s2,s3);
+    return[
+      {label:'1호 지분',val:(s1*100).toFixed(1),unit:'%'},
+      {label:'2호 지분',val:(s2*100).toFixed(1),unit:'%'},
+      {label:'3호 지분',val:(s3*100).toFixed(1),unit:'%'},
+      {label:'과반수 의결',val:maxS>0.5?'가능 ✓':'불가 ✗',unit:''}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=120;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    const S=v.a1+v.a2+v.a3;
+    const data=[{l:'1호',val:v.a1,c:'#4488FF'},{l:'2호',val:v.a2,c:'#00E5CC'},{l:'3호',val:v.a3,c:'#FFB347'}];
+    let cx=0;
+    data.forEach(d=>{
+      const bw=(d.val/S)*W;
+      html+=`<rect x="${cx}" y="20" width="${bw}" height="70" fill="${d.c}" rx="0" opacity=".8"/>`;
+      if(bw>24)html+=`<text x="${cx+bw/2}" y="60" font-size="11" fill="#080B10" text-anchor="middle" font-weight="700">${d.l} ${(d.val/S*100).toFixed(1)}%</text>`;
+      cx+=bw;
+    });
+    html+=`<line x1="${W/2}" y1="10" x2="${W/2}" y2="95" stroke="#FF6B35" stroke-width="1.5" stroke-dasharray="5,3"/>`;
+    html+=`<text x="${W/2+3}" y="12" font-size="8" fill="#FF6B35">50%</text>`;
+    html+=`<text x="10" y="${H+14}" font-size="9" fill="#6880A8">의결권 = 지분 = 전유면적 비율</text>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'a₁=60, a₂=80, a₃=120(m²)일 때 3호의 지분 비율을 분수와 소수로 나타내시오.',a:'지분 = 120/260 = 6/13 ≈ 0.4615 = 46.15%',hint:'전체 S = 60+80+120 = 260, 3호 지분 = 120/260'},
+    {q:'월 관리비가 52만원일 때 1호가 부담해야 할 금액은?',a:'52 × (60/260) = 52 × 3/13 = 12만원',hint:'1호 지분 = 60/260 = 3/13, 관리비 = 52×(3/13)'}
+  ]
+},
+
+{
+  id:'homograph_frequency',
+  exam:'6월 모의평가',
+  category:'언어학 지문',
+  source:'2026학년도 대학수학능력시험 6월 모의평가 — [1~3] 동형이의어 지문',
+  title:'동형이의어 고빈도 단어 선택 확률',
+  badge:'확률·상대 빈도',
+  emoji:'📖',
+  color:'#FF6B35',
+  formula:'P(고빈도 선택) = f₁ / (f₁+f₂)',
+  curriculum:{grade:'수학Ⅰ',main:'수학Ⅰ — 확률',
+    units:['확률의 뜻과 활용','통계적 확률'],
+    concepts:['상대 빈도','경험적 확률','두 사건의 비교']},
+  passage:[
+    {t:'동형이의어도 마찬가지로, 일반적인 언어생활에서 표기가 같은 단어들끼리 사용 빈도를 비교해 보면 그중에 '},
+    {t:'다른 단어들보다 사용 빈도가 높은 고빈도 단어가 있는 경우가 대부분이다.',h:true,hl:'#FF6B35',note:'고빈도 단어: P(의미₁) = f₁/(f₁+f₂) → 높은 사전 확률'},
+    {t:' '},
+    {t:'독자가 동형이의어를 읽으면 고빈도 단어가 지닌 의미를 떠올릴 가능성이 높고,',h:true,hl:'#FFB347',note:'P(고빈도 먼저 처리) = f₁/(f₁+f₂) 비례'},
+    {t:' 의미 확정을 위해 그것이 문장이나 문맥에 어울리는지부터 확인하게 된다. '},
+    {t:'그런데 독자가 떠올린 고빈도 단어가 지닌 의미가 문장이나 문맥에 어울리지 않는 경우가 있다.',h:true,hl:'#00E5CC',note:'고빈도 선택 실패 시 저빈도 시도 → 순차 전략'}
+  ],
+  inquiry:{
+    question:'단어 A의 의미₁(고빈도) 사용 빈도 f₁=80, 의미₂(저빈도) f₂=20이라면 P(의미₁ 먼저 처리)는? 문맥 제약 강도 c(0~1)에 따라 실제 의미 확정 정확도를 모델링하시오.',
+    hypothesis:'P(고빈도) = 80/(80+20) = 0.8. 제약 강한 문맥(c=1)이면 고빈도가 틀려도 저빈도로 수정 가능. E(시도 횟수) = 1 + (1-c)×P(고빈도 실패).',
+    mathKey:'P(의미₁) = f₁/(f₁+f₂)  /  E(시도) = 1 + P(재시도)',
+    method:['상대 빈도 P(의미₁) = f₁/(f₁+f₂) 계산.','제약 강도 c: 강한 문맥일수록 의미 확정이 쉬움.','고빈도 오선택 확률 = P(의미₁) × P(맥락 불일치|의미₁) ≈ P(의미₁)×(1-c).','기대 처리 단계 E = 1 + 오선택 확률.','f₁/f₂ 비율이 클수록 오선택 위험 높아짐 그래프.']
+  },
+  vars:[
+    {name:'고빈도 f₁',key:'f1',unit:'회',min:10,max:200,def:80,step:5},
+    {name:'저빈도 f₂',key:'f2',unit:'회',min:5,max:100,def:20,step:5},
+    {name:'문맥 제약 강도 c',key:'c',unit:'',min:0.0,max:1.0,def:0.7,step:0.05}
+  ],
+  compute(v){
+    const p1=v.f1/(v.f1+v.f2);
+    const misMatch=p1*(1-v.c);
+    const E=1+misMatch;
+    return[
+      {label:'P(고빈도 먼저)',val:(p1*100).toFixed(1),unit:'%'},
+      {label:'오선택 확률',val:(misMatch*100).toFixed(1),unit:'%'},
+      {label:'기대 처리 단계',val:E.toFixed(3),unit:'단계'},
+      {label:'빈도비 f₁:f₂',val:`${v.f1}:${v.f2}`,unit:''}
+        ];
+  },
+  drawChart(svg,v){
+    const W=300,H=140;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    const total=v.f1+v.f2;
+    const w1=(v.f1/total)*W;const w2=(v.f2/total)*W;
+    html+=`<rect x="0" y="30" width="${w1}" height="70" fill="#FF6B35" rx="0" opacity=".8"/>`;
+    html+=`<text x="${w1/2}" y="68" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">고빈도 ${(v.f1/total*100).toFixed(1)}%</text>`;
+    html+=`<rect x="${w1}" y="30" width="${w2}" height="70" fill="#4488FF" rx="0" opacity=".8"/>`;
+    if(w2>25)html+=`<text x="${w1+w2/2}" y="68" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">저빈도 ${(v.f2/total*100).toFixed(1)}%</text>`;
+    // constraint bar
+    html+=`<rect x="0" y="110" width="${v.c*W}" height="14" fill="#00E5CC" rx="3" opacity=".7"/>`;
+    html+=`<text x="${v.c*W+5}" y="121" font-size="9" fill="#00E5CC">문맥 제약 c=${v.c.toFixed(2)}</text>`;
+    html+=`<text x="5" y="20" font-size="9" fill="#6880A8">사용 빈도 분포</text>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:"'사과'의 '과일' 의미 빈도=900, '사과(謝過)' 의미 빈도=100이라면 P(과일 의미 먼저 처리)는?",a:'900/(900+100) = 0.9 = 90%',hint:'P = f₁/(f₁+f₂) = 900/1000'},
+    {q:'문맥 제약 c=0.8일 때 오선택 확률은?',a:'P(오선택) = 0.9 × (1-0.8) = 0.9 × 0.2 = 0.18 = 18%',hint:'고빈도가 맥락에 안 맞는 경우: P(고빈도)×P(불일치|고빈도) = 0.9×0.2'}
+  ]
+},
+
+{
+  id:'binary_opposition',
+  exam:'5월 모의고사',
+  category:'독서 방법론 지문',
+  source:'2026학년도 5월 고3 전국연합학력평가 국어 — [1~3] 이항 대립·해체적 읽기 지문',
+  title:'이항 대립 위계 분석과 집합 분류',
+  badge:'집합·논리 분류',
+  emoji:'📚',
+  color:'#FFB347',
+  formula:'이항 대립: A ∩ B = ∅, A ∪ B = 전체 개념',
+  curriculum:{grade:'공통수학',main:'공통수학 — 집합과 명제',
+    units:['집합의 뜻과 연산','명제와 조건'],
+    concepts:['이항 분할 A∩B=∅','벤 다이어그램','조건 명제 p→q']},
+  passage:[
+    {t:'이항 대립 구조는 두 가지 개념을 짝지어 상반되는 성격으로 대립시키는 것으로, '},
+    {t:'글의 구조를 완성하고 주제를 강조하기 위해 사용된다.',h:true,hl:'#FFB347',note:'이항 대립 = 전체 개념을 두 집합으로 분할 (A ∪ B = U, A ∩ B = ∅)'},
+    {t:' '},
+    {t:'이항 대립되는 개념들 사이에 저자가 어느 쪽의 개념을 강조하느냐에 따라 위계가 필연적으로 형성된다고 보고',h:true,hl:'#FF6B35',note:'위계: |A강조|에서 B는 부정적 위상 → 비대칭 이진 트리'},
+    {t:' 이 위계의 모순을 밝힌다. '},
+    {t:'독자는 글에 부정적으로 나타난 개념에 새로운 가치를 부여함으로써 저자가 설정한 위계가 절대적이지 않음을 파악할 수 있다.',h:true,hl:'#00E5CC',note:'위계 역전 가능 → A>B 대신 B>A로 재해석 (집합 포함 관계 반전)'}
+  ],
+  inquiry:{
+    question:'홍길동전에서 "홍길동(의적)"과 "신분 질서"의 이항 대립에서 각 집합을 긍정/부정 속성으로 분류하면 n가지 속성이 있다. 이 분류표를 조합 수식으로 표현하면?',
+    hypothesis:'긍정 속성 집합 A={자유, 능력, 정의}, 부정 집합 B={신분, 억압}. 속성 재배치 경우의 수 = 2ⁿ (각 속성이 A 또는 B에 속하는 경우). n=5이면 32가지.',
+    mathKey:'경우의 수 = 2ⁿ  (n개 속성을 두 집합으로 분류)  /  A∩B=∅',
+    method:['이항 대립 쌍 (긍정, 부정) 설정.','각 쌍의 속성 개수 n 결정.','각 속성이 긍정/부정 어디에 속하는지 2ⁿ가지 분류.','위계 반전 시 재분류 경우 수 = n!/(대칭 조건).','위계 강도 h: A의 긍정 속성 개수/전체.']
+  },
+  vars:[
+    {name:'긍정 집합 속성 수 |A|',key:'a',unit:'개',min:1,max:8,def:3,step:1},
+    {name:'부정 집합 속성 수 |B|',key:'b',unit:'개',min:1,max:8,def:2,step:1},
+    {name:'위계 강도 h (A 우세)',key:'h',unit:'%',min:10,max:90,def:70,step:5}
+  ],
+  compute(v){
+    const n=v.a+v.b;
+    const cases=Math.pow(2,n);
+    const hier=v.h/100;
+    const moord=1-hier;
+    return[
+      {label:'전체 속성 수 n',val:n,unit:'개'},
+      {label:'분류 경우 수 2ⁿ',val:cases,unit:'가지'},
+      {label:'A 위계 강도',val:(hier*100).toFixed(0),unit:'%'},
+      {label:'B 재해석 여지',val:(moord*100).toFixed(0),unit:'%'}
+        ];
+  },
+  drawChart(svg,v){
+    const W=300,H=140;svg.setAttribute('viewBox',`0 0 ${W} ${H+20}`);let html='';
+    // Venn-like diagram
+    const cx=W/2,cy=70,r=55;
+    html+=`<ellipse cx="${cx-28}" cy="${cy}" rx="${r}" ry="48" fill="#FFB347" opacity=".25" stroke="#FFB347" stroke-width="1.5"/>`;
+    html+=`<ellipse cx="${cx+28}" cy="${cy}" rx="${r}" ry="48" fill="#FF6B35" opacity=".25" stroke="#FF6B35" stroke-width="1.5"/>`;
+    html+=`<text x="${cx-50}" y="55" font-size="13" fill="#FFB347" text-anchor="middle" font-weight="700">A 긍정</text>`;
+    html+=`<text x="${cx-50}" y="72" font-size="11" fill="#FFB347" text-anchor="middle">${v.a}개</text>`;
+    html+=`<text x="${cx+50}" y="55" font-size="13" fill="#FF6B35" text-anchor="middle" font-weight="700">B 부정</text>`;
+    html+=`<text x="${cx+50}" y="72" font-size="11" fill="#FF6B35" text-anchor="middle">${v.b}개</text>`;
+    html+=`<text x="${cx}" y="70" font-size="10" fill="#6880A8" text-anchor="middle">∩=∅</text>`;
+    const h=v.h/100;
+    html+=`<rect x="20" y="${H-10}" width="${(W-40)*h}" height="12" fill="#FFB347" rx="3" opacity=".8"/>`;
+    html+=`<rect x="${20+(W-40)*h}" y="${H-10}" width="${(W-40)*(1-h)}" height="12" fill="#FF6B35" rx="3" opacity=".7"/>`;
+    html+=`<text x="10" y="${H+14}" font-size="8" fill="#3E5070">위계 강도 h=${v.h}%</text>`;
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'속성이 n=5개일 때 이항 대립 분류 경우의 수는?',a:'2⁵ = 32가지',hint:'각 속성이 A(긍정) 또는 B(부정)에 독립적으로 속할 수 있으므로 2×2×…×2 = 2ⁿ'},
+    {q:'A={자유, 능력, 정의}, B={신분, 억압}일 때 n(A∪B)=?',a:'n(A∪B) = 3+2 = 5  (A∩B=∅이므로)',hint:'A와 B가 공통 원소 없음 → n(A∪B) = n(A)+n(B)'}
+  ]
+}
+
+
+,
+
+/* ══ 수능특강 독서 ①: 하디-바인베르크 평형 p²+2pq+q²=1 ══ */
+{
+  id:'hardy_weinberg',
+  exam:'2027 수능특강 독서',
+  category:'과학·기술 지문',
+  source:'2027학년도 EBS 수능특강 독서 — 04 과학·기술 [01~05] 하디-바인베르크 평형 법칙 (본문 p181~186)',
+  title:'하디-바인베르크 평형: p²+2pq+q²=1',
+  badge:'이차방정식·확률분포',
+  emoji:'🧬',
+  color:'#06B6D4',
+  formula:'(p+q)² = p²(AA) + 2pq(Aa) + q²(aa) = 1',
+  curriculum:{grade:'수학Ⅰ',main:'수학Ⅰ — 확률',
+    units:['확률의 뜻과 활용','통계적 확률'],
+    concepts:['이항분포 (p+q)²=1','독립 사건 곱셈','유전자형 빈도 계산']},
+  passage:[
+    {t:'하디는 집단 내의 두 대립유전자 A와 a가 전체 유전자풀에서 차지하는 비율, 즉 대립유전자 빈도를 각각 p와 q로 설정했다. '},
+    {t:'그 후 무작위 교배 시 다음 세대의 유전자형 빈도가 어떻게 나타나는지를 수학적으로 분석했다.',h:true,hl:'#06B6D4',note:'무작위 교배 → 독립 사건: P(AA)=p², P(Aa)=2pq, P(aa)=q²'},
+    {t:' '},
+    {t:'A의 유전자 빈도(p)는 전체 유전자의 1,400/2,000, 즉 70%인 0.7, a의 유전자 빈도(q)는 600/2,000, 즉 30%인 0.3이다.',h:true,hl:'#F97316',note:'p=0.7, q=0.3 → p+q=1, p²+2pq+q²=0.49+0.42+0.09=1.00'},
+    {t:' 이 개체군에서 AA형 빈도는 p²=0.49, Aa형 빈도는 2pq=0.42, aa형 빈도는 q²=0.09로 계산되며,'},
+    {t:' 세대를 거쳐도 이 비율은 일정하게 유지된다.',h:true,hl:'#10B981',note:'평형 유지: 세대 불문 p²:2pq:q² 고정 (하디-바인베르크 법칙)'},
+    {t:' X 염색체 연관 질환에서는 여성(XX)의 질환 빈도 = q², 남성(XY)의 질환 빈도 = q 이므로,'},
+    {t:' 여성 질환 빈도/남성 질환 빈도 = q < 1 (여성이 더 낮음).',h:true,hl:'#F59E0B',note:'q²(여성) < q(남성): X연관 열성 질환은 여성이 남성보다 희귀'}
+  ],
+  inquiry:{
+    question:'대립유전자 빈도 p와 q(p+q=1)가 주어질 때, 세 가지 유전자형(AA, Aa, aa)의 빈도를 이항전개로 계산하라. p=0.7일 때 이형접합자(Aa)의 비율이 최대가 되는 p값은?',
+    hypothesis:'2pq는 p(1-p)의 2배. 2pq의 최댓값은 p=0.5일 때 2(0.5)(0.5)=0.5. 즉 대립유전자 빈도가 같을 때 이형접합자 비율이 가장 높다.',
+    mathKey:'(p+q)²=1 전개 / f(p)=2p(1-p), f\'(p)=2-4p=0 → p=0.5에서 최대',
+    method:['p+q=1 조건 확인.','AA빈도=p², Aa빈도=2pq=2p(1-p), aa빈도=(1-p)².','슬라이더로 p를 변화시켜 세 빈도 변화 관찰.','2pq의 최댓값: p=0.5일 때 2×0.5×0.5=0.50.','법의학 응용: 특정 유전자형 빈도가 낮을수록 DNA 증거 신뢰도↑.']
+  },
+  vars:[
+    {name:'대립유전자 빈도 p',key:'p',unit:'',min:0.01,max:0.99,def:0.7,step:0.01},
+    {name:'집단 총 개체 수 N',key:'N',unit:'마리',min:100,max:2000,def:1000,step:100}
+  ],
+  compute(v){
+    const q=1-v.p;
+    const AA=v.p*v.p,Aa=2*v.p*q,aa=q*q;
+    return[
+      {label:'AA 빈도 p²',val:(AA*100).toFixed(2),unit:'%'},
+      {label:'Aa 빈도 2pq',val:(Aa*100).toFixed(2),unit:'%'},
+      {label:'aa 빈도 q²',val:(aa*100).toFixed(2),unit:'%'},
+      {label:'예상 Aa 개체 수',val:Math.round(Aa*v.N),unit:'마리'}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox','0 0 '+W+' '+(H+20));let html='';
+    const q=1-v.p;
+    const data=[
+      {l:'AA(p²)',val:v.p*v.p,c:'#06B6D4'},
+      {l:'Aa(2pq)',val:2*v.p*q,c:'#10B981'},
+      {l:'aa(q²)',val:q*q,c:'#F97316'}
+    ];
+    const bw=70,gap=(W-3*bw)/4;
+    data.forEach(function(d,i){
+      const x=gap+(bw+gap)*i;const bh=(d.val)*(H-20);const y=H-20-bh;
+      html+='<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" fill="'+d.c+'" rx="5" opacity=".85"/>';
+      html+='<text x="'+(x+bw/2)+'" y="'+(y-4)+'" font-size="11" fill="'+d.c+'" text-anchor="middle" font-weight="700">'+(d.val*100).toFixed(1)+'%</text>';
+      html+='<text x="'+(x+bw/2)+'" y="'+(H+13)+'" font-size="9" fill="#3E5070" text-anchor="middle">'+d.l+'</text>';
+    });
+    html+='<line x1="0" y1="'+(H-20)+'" x2="'+W+'" y2="'+(H-20)+'" stroke="#1C2230"/>';
+    html+='<text x="5" y="12" font-size="9" fill="#6880A8">p='+v.p.toFixed(2)+',  q='+(1-v.p).toFixed(2)+'  /  합계='+(v.p*v.p+2*v.p*(1-v.p)+(1-v.p)*(1-v.p)).toFixed(4)+'</text>';
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'p=0.7, q=0.3일 때 이형접합자(Aa) 빈도 2pq를 계산하고, 이것이 집단 1,000마리에서 몇 마리인지 구하시오.',a:'2pq = 2×0.7×0.3 = 0.42 → 1,000×0.42 = 420마리',hint:'2pq = 2×p×(1-p) = 2×0.7×0.3'},
+    {q:'이형접합자 비율 2pq가 최대가 되는 p값과 그때의 최댓값을 구하시오.',a:'p=0.5일 때 2pq = 2×0.5×0.5 = 0.50 (50%)',hint:'f(p)=2p(1-p), f\'(p)=2-4p=0 → p=1/2'}
+  ]
+},
+
+/* ══ 수능특강 독서 ②: 가상 메모리 페이징 — 주소 변환 ══ */
+{
+  id:'virtual_memory_paging',
+  exam:'2027 수능특강 독서',
+  category:'과학·기술 지문',
+  source:'2027학년도 EBS 수능특강 독서 — 03 지문으로 이해하기 [01~03] 가상 메모리·페이징 (본문 p41~46)',
+  title:'페이징: 가상 주소 → 물리 주소 변환',
+  badge:'나눗셈·나머지 연산',
+  emoji:'💻',
+  color:'#8B5CF6',
+  formula:'물리주소 = 페이지프레임번호 × 페이지크기 + 오프셋',
+  curriculum:{grade:'공통수학',main:'공통수학 — 수와 연산',
+    units:['정수와 나머지','나눗셈 알고리즘'],
+    concepts:['몫과 나머지 a = bq+r','정수 나눗셈 floor division','주소 변환 선형 함수']},
+  passage:[
+    {t:'이를 위해 프로그램을 같은 크기의 작동 단위인 페이지로 분할하고, 페이지 단위로 프로그램을 주기억 장치에 올리는 것을 페이징이라고 한다. '},
+    {t:'페이징을 할 때 주기억 장치에 페이지를 올릴 자리를 페이지 프레임이라고 부른다.',h:true,hl:'#8B5CF6',note:'페이지 크기=100일 때: 프레임 0번=주소 0~99, 1번=100~199...'},
+    {t:' 각 페이지의 크기는 100이다. '},
+    {t:'프로세스 A의 페이지 0과 1, 프로세스 B의 페이지 0, 1, 2가 당장 구동할 페이지이므로 이들을 페이지 프레임에 올린다.',h:true,hl:'#F97316',note:'가상 페이지 번호 → 페이지 테이블 → 물리 프레임 번호 조회'},
+    {t:' '},
+    {t:'프로세스 A에서 가상 주소 110을 주기억 장치 주소로 변환할 때, 110을 페이지 크기 100으로 나누면 몫이 1, 나머지가 10이 된다.',h:true,hl:'#06B6D4',note:'가상 주소 110 = 페이지1(몫1) + 오프셋10(나머지). 프레임1=100이므로 물리주소=100+10=110'},
+    {t:' 이 프로세스 A의 페이지 1에 해당하는 페이지 프레임 번호는 1이고,'},
+    {t:' 주기억 장치 주소는 1×100+10=110이 된다.',h:true,hl:'#10B981',note:'물리주소 = 프레임번호×페이지크기 + 오프셋 = 1×100+10 = 110'}
+  ],
+  inquiry:{
+    question:'페이지 크기가 s일 때, 가상 주소 v를 물리 주소로 변환하는 공식은? 페이지 번호 = ⌊v/s⌋, 오프셋 = v mod s. 페이지 테이블로 프레임 번호 f를 얻으면 물리 주소 = f×s + 오프셋이다.',
+    hypothesis:'가상 주소 v에서: 페이지 번호 = v ÷ s의 몫, 오프셋 = v mod s. 물리 주소 = 테이블[페이지번호] × s + 오프셋.',
+    mathKey:'v = s·q + r  (0 ≤ r < s)  →  페이지번호=q, 오프셋=r  →  물리주소=f·s+r',
+    method:['페이지 크기 s, 가상 주소 v 설정.','페이지 번호 = ⌊v/s⌋ (몫).','오프셋 = v mod s (나머지).','페이지 테이블에서 프레임 번호 f 조회.','물리 주소 = f × s + 오프셋 계산.']
+  },
+  vars:[
+    {name:'페이지 크기 s',key:'s',unit:'B',min:64,max:512,def:100,step:4},
+    {name:'가상 주소 v',key:'v',unit:'',min:0,max:999,def:110,step:1},
+    {name:'페이지 테이블[해당 페이지]의 프레임 번호 f',key:'f',unit:'',min:0,max:9,def:1,step:1}
+  ],
+  compute(v){
+    const pageNum=Math.floor(v.v/v.s);
+    const offset=v.v%v.s;
+    const phys=v.f*v.s+offset;
+    return[
+      {label:'페이지 번호 ⌊v/s⌋',val:pageNum,unit:''},
+      {label:'오프셋 v mod s',val:offset,unit:''},
+      {label:'물리 주소 f×s+오프셋',val:phys,unit:''},
+      {label:'검증 v=s×⌊v/s⌋+r',val:(v.s*pageNum+offset)+'='+v.v,unit:''}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox','0 0 '+W+' '+(H+20));let html='';
+    const pageNum=Math.floor(v.v/v.s);const offset=v.v%v.s;const phys=v.f*v.s+offset;
+    // Visual: address space
+    const maxAddr=v.s*5;
+    const scale=W/maxAddr;
+    // frames
+    for(let i=0;i<5;i++){
+      const x=i*v.s*scale;const bw=v.s*scale;
+      html+='<rect x="'+x+'" y="20" width="'+(bw-1)+'" height="50" fill="'+(i===pageNum?'#8B5CF6':'#1C2230')+'" rx="2" opacity="0.8"/>';
+      html+='<text x="'+(x+bw/2)+'" y="50" font-size="9" fill="#fff" text-anchor="middle">P'+i+'</text>';
+    }
+    // physical
+    for(let i=0;i<5;i++){
+      const x=i*v.s*scale;const bw=v.s*scale;
+      html+='<rect x="'+x+'" y="90" width="'+(bw-1)+'" height="50" fill="'+(i===v.f?'#10B981':'#1C2230')+'" rx="2" opacity="0.8"/>';
+      html+='<text x="'+(x+bw/2)+'" y="120" font-size="9" fill="#fff" text-anchor="middle">F'+i+'</text>';
+    }
+    html+='<text x="5" y="15" font-size="9" fill="#8B5CF6">가상 주소 공간</text>';
+    html+='<text x="5" y="86" font-size="9" fill="#10B981">물리 주소 공간</text>';
+    html+='<text x="5" y="'+(H+14)+'" font-size="9" fill="#6880A8">v='+v.v+' → 페이지'+pageNum+'+오프셋'+offset+' → 프레임'+v.f+' → 물리주소'+phys+'</text>';
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'페이지 크기 s=100, 가상 주소 v=350일 때 페이지 번호와 오프셋을 구하시오.',a:'페이지 번호=⌊350/100⌋=3, 오프셋=350 mod 100=50',hint:'350 = 100×3 + 50'},
+    {q:'페이지 번호 3의 프레임 번호가 5라면 물리 주소는?',a:'물리주소 = 5×100 + 50 = 550',hint:'물리주소 = 프레임번호×페이지크기 + 오프셋 = 5×100+50'}
+  ]
+},
+
+/* ══ 수능특강 독서 ③: 젖음성·접촉각 — 표면 에너지 비교 ══ */
+{
+  id:'surface_energy_contact',
+  exam:'2027 수능특강 독서',
+  category:'과학·기술 지문',
+  source:'2027학년도 EBS 수능특강 독서 — 03 주제통합 [01~05] 젖음성과 표면 에너지 (본문 p234~241)',
+  title:'접촉각과 표면 에너지 — 영의 방정식',
+  badge:'삼각함수·부등식',
+  emoji:'💧',
+  color:'#0EA5E9',
+  formula:"cos θ = (γ_SG - γ_SL) / γ_LG  (영의 방정식)",
+  curriculum:{grade:'수학Ⅰ',main:'수학Ⅰ — 삼각함수',
+    units:['삼각함수의 그래프','삼각함수 활용'],
+    concepts:['cos θ의 범위 [-1,1]','θ와 cos θ의 단조성','영의 방정식 부등식 분석']},
+  passage:[
+    {t:'접촉각이 작을수록 고체의 액체에 대한 젖음성이 크다고 말했다. '},
+    {t:'접촉각 θ가 10°이면 액체가 고체 표면에서 납작하게 퍼져 있는 상태이지만, 접촉각이 150°이면 액체가 반지름이 R보다 큰 구의 아래 일부가 잘린 채 둥그런 모양을 이루며 고체 표면에 달라붙은 상태이다.',h:true,hl:'#0EA5E9',note:'θ↓ → 젖음성↑  /  θ=0°: 완전 젖음, θ=180°: 완전 비젖음'},
+    {t:' 고체-액체 간 표면 에너지가 고체-기체 간 표면 에너지보다 작아지면, 고체-액체 간 경계면의 면적이 늘고 고체-기체 간 경계면의 면적이 줄기 때문에 액체 방울이 고체 면 위에 퍼지면서 '},
+    {t:'접촉각이 90°보다 작아져 0°에 더 가까워진다.',h:true,hl:'#10B981',note:'γ_SL < γ_SG → cos θ > 0 → θ < 90° (친수성)'},
+    {t:' 반대로 고체-액체 간 표면 에너지가 고체-기체 간 표면 에너지보다 커지면, 접촉각이 90°보다 커져 '},
+    {t:'180°에 더 가까워진다.',h:true,hl:'#F97316',note:'γ_SL > γ_SG → cos θ < 0 → θ > 90° (소수성)'},
+    {t:' 물의 접촉각이 150° 이상인 고체 물질을 초소수성 물질이라고 한다.',h:true,hl:'#EF4444',note:'초소수성: θ ≥ 150°, cos150° = -√3/2 ≈ -0.866'}
+  ],
+  inquiry:{
+    question:'영의 방정식 cos θ = (γ_SG − γ_SL) / γ_LG 에서 θ가 90°, 150°, 10°일 때 각각의 cosine 값과 표면 에너지 관계를 분석하시오. θ ≥ 150°(초소수성) 조건을 cos θ로 표현하면?',
+    hypothesis:'θ=90°: cosθ=0 → γ_SG=γ_SL. θ<90°: cosθ>0 → γ_SG>γ_SL (친수). θ>90°: cosθ<0 → γ_SG<γ_SL (소수). θ≥150°: cosθ≤cos150°=−√3/2≈−0.866.',
+    mathKey:'cos θ = (γ_SG-γ_SL)/γ_LG  /  θ↑ → cosθ↓  (θ∈[0°,180°]에서 cos 단조감소)',
+    method:['cos 함수가 [0°,180°]에서 단조감소임 확인.','θ=90°: cos90°=0 → 표면 에너지 동일.','θ<90° (친수): cos>0 → γ_SG > γ_SL.','θ>90° (소수): cos<0 → γ_SG < γ_SL.','초소수성 조건 θ≥150° → cosθ ≤ -√3/2 해석.']
+  },
+  vars:[
+    {name:'고체-기체 표면에너지 γ_SG',key:'gsg',unit:'J/m²',min:0.01,max:1.0,def:0.05,step:0.01},
+    {name:'고체-액체 표면에너지 γ_SL',key:'gsl',unit:'J/m²',min:0.01,max:1.0,def:0.04,step:0.01},
+    {name:'액체-기체 표면에너지 γ_LG',key:'glg',unit:'J/m²',min:0.01,max:0.1,def:0.072,step:0.001}
+  ],
+  compute(v){
+    const cosT=(v.gsg-v.gsl)/v.glg;
+    const cosC=Math.max(-1,Math.min(1,cosT));
+    const theta=Math.acos(cosC)*180/Math.PI;
+    const type=theta<90?'친수성':theta<150?'소수성':'초소수성';
+    return[
+      {label:'cos θ',val:cosC.toFixed(4),unit:''},
+      {label:'접촉각 θ',val:theta.toFixed(1),unit:'°'},
+      {label:'젖음성 유형',val:type,unit:''},
+      {label:'γ_SG - γ_SL',val:(v.gsg-v.gsl).toFixed(4),unit:'J/m²'}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox','0 0 '+W+' '+(H+20));let html='';
+    const cosT=Math.max(-1,Math.min(1,(v.gsg-v.gsl)/v.glg));
+    const theta=Math.acos(cosT)*180/Math.PI;
+    // Draw droplet cross-section
+    const cx=W/2,cy=90,R=50;
+    const thetaRad=theta*Math.PI/180;
+    if(theta<=90){
+      // flat droplet
+      const h=R*(1-Math.cos(thetaRad));
+      const arc_r=R;
+      html+='<path d="M '+(cx-R*Math.sin(thetaRad))+' 90 A '+arc_r+' '+arc_r+' 0 0 1 '+(cx+R*Math.sin(thetaRad))+' 90" fill="#0EA5E9" opacity=".6"/>';
+      html+='<path d="M '+(cx-R*Math.sin(thetaRad))+' 90 Q '+cx+' '+(90-h*2)+' '+(cx+R*Math.sin(thetaRad))+' 90" fill="#0EA5E9" opacity=".6"/>';
+    } else {
+      html+='<circle cx="'+cx+'" cy="'+(90-R*Math.cos(Math.PI-thetaRad)*0.5)+'" r="'+(R*0.8)+'" fill="#0EA5E9" opacity=".6"/>';
+    }
+    html+='<line x1="50" y1="90" x2="250" y2="90" stroke="#3E5070" stroke-width="2"/>';
+    html+='<text x="'+(cx-10)+'" y="130" font-size="11" fill="#0EA5E9" font-weight="700">θ='+theta.toFixed(0)+'°</text>';
+    html+='<text x="5" y="15" font-size="9" fill="#6880A8">cosθ='+cosT.toFixed(3)+'  /  '+((theta<90?'친수':theta<150?'소수':'초소수')+'성')+'</text>';
+    const pts=[];for(let a=0;a<=180;a+=3){const x=(a/180)*W;const y=(H-20)/2-(Math.cos(a*Math.PI/180))*(H-20)/2;pts.push(x.toFixed(0)+','+(20+y).toFixed(0));}
+    html+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="#F97316" stroke-width="1.5" opacity=".5"/>';
+    const tx=(theta/180)*W;const ty=(H-20)/2-(cosT)*(H-20)/2+20;
+    html+='<circle cx="'+tx+'" cy="'+ty+'" r="4" fill="#EF4444"/>';
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'γ_SG=0.050, γ_SL=0.040, γ_LG=0.072 J/m² 일 때 접촉각 θ를 구하시오. (cos⁻¹(5/36) ≈ 82°)',a:'cosθ=(0.050-0.040)/0.072=0.010/0.072≈0.139 → θ≈82° (친수성)',hint:'cosθ=(γ_SG-γ_SL)/γ_LG = 0.010/0.072 ≈ 0.139'},
+    {q:'초소수성(θ≥150°)이 되려면 cosθ ≤ ? (cos150° = -√3/2)',a:'cosθ ≤ -√3/2 ≈ -0.866',hint:'cos은 0~180°에서 단조감소. θ≥150° ↔ cosθ ≤ cos150°'}
+  ]
+},
+
+/* ══ 수능특강 독서 ④: 방사성 붕괴 비율로 암석 연대 측정 ══ */
+{
+  id:'radioactive_dating',
+  exam:'2027 수능특강 독서',
+  category:'과학·기술 지문',
+  source:'2027학년도 EBS 수능특강 독서 — 11 과학·기술 실전 학습 [01~05] 판 구조론·포타슘-아르곤 연대측정 (본문 p383~391)',
+  title:'포타슘-아르곤 연대 측정: 방사성 붕괴 지수 감쇠',
+  badge:'지수함수·로그',
+  emoji:'🪨',
+  color:'#78716C',
+  formula:'K(t) = K₀ × (1/2)^(t/T½)  →  t = T½ × log₂(K₀/K)',
+  curriculum:{grade:'수학Ⅰ',main:'수학Ⅰ — 지수함수와 로그함수',
+    units:['지수함수','로그함수'],
+    concepts:['지수 감소 y=(1/2)^t','로그를 이용한 역연산','반감기 T½ 활용']},
+  passage:[
+    {t:'방사성 포타슘 동위원소 원자핵은 방사선을 방출하면서 아르곤 원자핵으로 붕괴되는데, '},
+    {t:'방사성 포타슘이 아르곤으로 변환되는 비율은 어떤 조건에서도 일정하다.',h:true,hl:'#78716C',note:'변환율 λ 일정 → 지수 감쇠: K(t)=K₀·e^(-λt) = K₀·(1/2)^(t/T½)'},
+    {t:' '},
+    {t:'현재 암석에 함유된 방사성 포타슘과 아르곤의 비율을 알면 암석의 생성 시기를 추정할 수 있었다.',h:true,hl:'#F97316',note:'[Ar]/[K]비율로 경과 시간 t 역산: t = T½ × log₂(([K₀]+[Ar])/[K])'},
+    {t:' '},
+    {t:'해령에서 먼 곳의 현무암이 가까운 곳의 현무암보다 생성 시기가 오래되었으므로 방사성 포타슘에 대한 아르곤의 비율이 더 높을 것이다.',h:true,hl:'#10B981',note:'시간 경과 ↑ → K 감소, Ar 증가 → Ar/K 비율↑ (단조 증가)'}
+  ],
+  inquiry:{
+    question:'포타슘의 반감기가 T½일 때, 처음 K₀에서 현재 K_t만 남아 있다면 경과 시간 t를 로그로 표현하시오. 포타슘이 처음의 25%만 남았다면 몇 번의 반감기가 지난 것인가?',
+    hypothesis:'K(t)=K₀×(1/2)^(t/T½). K_t=0.25K₀이면 (1/2)^(t/T½)=1/4=（1/2)² → t/T½=2 → t=2T½.',
+    mathKey:'t = T½ × log_{1/2}(K_t/K₀) = T½ × ln(K_t/K₀)/ln(1/2)',
+    method:['초기 포타슘 K₀, 현재 포타슘 K_t 설정.','(1/2)^(t/T½) = K_t/K₀ 방정식 세우기.','t/T½ = log_{1/2}(K_t/K₀) = -log₂(K_t/K₀).','t = -T½ × log₂(K_t/K₀) 계산.','Ar/K 비율 = (K₀-K_t)/K_t = K₀/K_t - 1 로부터 역산.']
+  },
+  vars:[
+    {name:'반감기 T½ (억 년)',key:'T',unit:'억년',min:1,max:200,def:130,step:5},
+    {name:'남은 포타슘 비율 K_t/K₀',key:'ratio',unit:'%',min:1,max:99,def:25,step:1}
+  ],
+  compute(v){
+    const r=v.ratio/100;
+    const halves=-Math.log2(r);
+    const age=halves*v.T;
+    const ArK=1/r-1;
+    return[
+      {label:'반감기 경과 횟수',val:halves.toFixed(2),unit:'회'},
+      {label:'추정 연령 t',val:age.toFixed(0),unit:'억 년'},
+      {label:'Ar/K 비율',val:ArK.toFixed(3),unit:''},
+      {label:'검증 (1/2)^n',val:Math.pow(0.5,halves).toFixed(4),unit:'≈'+v.ratio+'%'}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox','0 0 '+W+' '+(H+20));let html='';
+    const maxT=v.T*5;
+    const pts=[];const arPts=[];
+    for(let t=0;t<=maxT;t+=maxT/60){
+      const r=Math.pow(0.5,t/v.T);
+      const x=(t/maxT)*W;
+      pts.push(x.toFixed(1)+','+(H-20-(r)*(H-20)).toFixed(1));
+      arPts.push(x.toFixed(1)+','+(H-20-(1-r)*(H-20)).toFixed(1));
+    }
+    html+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="#78716C" stroke-width="2"/>';
+    html+='<polyline points="'+arPts.join(' ')+'" fill="none" stroke="#F97316" stroke-width="2" stroke-dasharray="5,3"/>';
+    const curT=(-Math.log2(v.ratio/100))*v.T;const cx=(curT/maxT)*W;
+    html+='<line x1="'+cx+'" y1="0" x2="'+cx+'" y2="'+(H-20)+'" stroke="#10B981" stroke-width="1" stroke-dasharray="4,3"/>';
+    html+='<circle cx="'+cx+'" cy="'+(H-20-(v.ratio/100)*(H-20))+'" r="4" fill="#78716C"/>';
+    html+='<text x="5" y="15" font-size="9" fill="#78716C">─ K(t)   </text>';
+    html+='<text x="60" y="15" font-size="9" fill="#F97316">- - Ar(t)</text>';
+    html+='<line x1="0" y1="'+(H-20)+'" x2="'+W+'" y2="'+(H-20)+'" stroke="#1C2230"/>';
+    html+='<text x="5" y="'+(H+14)+'" font-size="8" fill="#6880A8">T½='+v.T+'억년, t='+curT.toFixed(0)+'억년에서 K='+(v.ratio)+'%</text>';
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'포타슘 반감기가 130억 년일 때, 현재 포타슘이 처음의 25%만 남아 있다면 암석의 연령은?',a:'t = 2 × 130억 = 260억 년  (2번의 반감기)',hint:'(1/2)^(t/130억) = 0.25 = (1/2)² → t/130억=2 → t=260억'},
+    {q:'포타슘과 아르곤의 비율이 K:Ar=1:3이면, 처음 포타슘 중 남은 비율과 반감기 경과 횟수는?',a:'K_t/K₀ = 1/4 = 25%, 반감기 2회 경과',hint:'K+Ar=K₀ → K₀=K+Ar=1+3=4, K_t/K₀=1/4'}
+  ]
+},
+
+/* ══ 수능특강 화법과 작문: 수면-학업 조건부 확률 ══ */
+{
+  id:'sleep_study_cond_prob',
+  exam:'2027 수능특강 화법과 작문',
+  category:'작문 — 보고서 지문',
+  source:'2027학년도 EBS 수능특강 화법과 작문 — 05 작문 적용 학습 [04~06] 수면과 학업 성취 보고서 (본문 p89~95)',
+  title:'수면 시간별 학업 성취 — 조건부 확률',
+  badge:'조건부 확률·비율',
+  emoji:'😴',
+  color:'#6366F1',
+  formula:'P(집중↑ | 7h이상) = 4/5 = 80%',
+  curriculum:{grade:'수학Ⅰ',main:'수학Ⅰ — 확률',
+    units:['조건부 확률','확률의 뜻과 활용'],
+    concepts:['P(B|A) = n(A∩B)/n(A)','집합 포함 관계로 확률 계산','두 조건부 확률 비교']},
+  passage:[
+    {t:'수면 시간 조사 결과: 3시간 미만 5명(10%), 3시간 이상 5시간 미만 25명(50%), 5시간 이상 7시간 미만 10명(20%), 7시간 이상 5명(10%), 기타 5명(10%)이었다. '},
+    {t:'7시간 이상 잔 학생 5명 중 4명(80%)이 수면 후 피로도에 대해 낮음 또는 매우 낮음이라고 응답했지만',h:true,hl:'#6366F1',note:'P(피로↓ | 7h이상) = 4/5 = 0.8 = 80%'},
+    {t:' '},
+    {t:'7시간 미만으로 잔 학생 40명 중 8명(20%)만 낮음 또는 매우 낮음으로 응답함.',h:true,hl:'#EF4444',note:'P(피로↓ | 7h미만) = 8/40 = 0.2 = 20%'},
+    {t:' '},
+    {t:'5시간 미만으로 자는 학생 30명 중 27명(90%)이 수업 집중도에 대해 낮음 또는 매우 낮음으로 응답',h:true,hl:'#F97316',note:'P(집중↓ | 5h미만) = 27/30 = 0.9 = 90%'},
+    {t:'하였으며, '},
+    {t:'7시간 이상 자는 학생 5명 중 4명(80%)이 집중도와 학업 성적에 대해 높음 또는 매우 높음으로 응답함.',h:true,hl:'#10B981',note:'P(집중↑ | 7h이상) = 4/5 = 0.8 = 80%'}
+  ],
+  inquiry:{
+    question:'50명 중 수면 5시간 미만(30명)과 7시간 이상(5명)의 집중도 조건부 확률을 구하고, 두 그룹이 독립 사건인지 판별하시오.',
+    hypothesis:'P(집중↓|5h미만)=90%, P(집중↓ 전체)≈(27+α)/50. 두 값이 다르면 종속. 수면이 집중도에 영향을 미침을 통계가 뒷받침.',
+    mathKey:'P(B|A) = n(A∩B)/n(A) / 독립 판별: P(B|A) vs P(B) 비교',
+    method:['각 그룹별 조건부 확률 계산.','P(집중↓|5h미만)=27/30=0.9.','P(집중↓|7h이상)=1/5=0.2(높음 응답 4/5이므로).','P(집중↓ 전체) 추정: 전체 기준으로 계산.','두 조건부 확률이 전체 확률과 다르면 종속 사건.']
+  },
+  vars:[
+    {name:'5h미만 그룹 인원',key:'nA',unit:'명',min:10,max:40,def:30,step:1},
+    {name:'그중 집중↓ 인원',key:'nAB',unit:'명',min:1,max:40,def:27,step:1},
+    {name:'7h이상 그룹 인원',key:'nC',unit:'명',min:1,max:15,def:5,step:1},
+    {name:'그중 집중↑ 인원',key:'nCD',unit:'명',min:0,max:15,def:4,step:1}
+  ],
+  compute(v){
+    const pAB=v.nAB/v.nA;
+    const pCD=v.nCD/v.nC;
+    const diff=pAB-(1-pCD);
+    return[
+      {label:'P(집중↓|5h미만)',val:(pAB*100).toFixed(1),unit:'%'},
+      {label:'P(집중↑|7h이상)',val:(pCD*100).toFixed(1),unit:'%'},
+      {label:'P(집중↓|7h이상)',val:((1-pCD)*100).toFixed(1),unit:'%'},
+      {label:'두 그룹 차이',val:(Math.abs(diff)*100).toFixed(1),unit:'%p → '+(Math.abs(diff)>0.1?'종속':'독립')}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox','0 0 '+W+' '+(H+20));let html='';
+    const pAB=v.nAB/v.nA;const pCD=v.nCD/v.nC;
+    const data=[
+      {l:'집중↓\n5h미만',val:pAB*100,c:'#EF4444'},
+      {l:'집중↑\n7h이상',val:pCD*100,c:'#10B981'},
+      {l:'집중↓\n7h이상',val:(1-pCD)*100,c:'#F97316'}
+    ];
+    const bw=70,gap=(W-3*bw)/4;
+    data.forEach(function(d,i){
+      const x=gap+(bw+gap)*i;const bh=(d.val/100)*(H-20);const y=H-20-bh;
+      html+='<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" fill="'+d.c+'" rx="5" opacity=".85"/>';
+      html+='<text x="'+(x+bw/2)+'" y="'+(y-4)+'" font-size="11" fill="'+d.c+'" text-anchor="middle" font-weight="700">'+d.val.toFixed(1)+'%</text>';
+      const lines=d.l.split('\n');
+      lines.forEach(function(ln,li){html+='<text x="'+(x+bw/2)+'" y="'+(H+10+li*11)+'" font-size="8.5" fill="#3E5070" text-anchor="middle">'+ln+'</text>';});
+    });
+    html+='<line x1="0" y1="'+(H-20)+'" x2="'+W+'" y2="'+(H-20)+'" stroke="#1C2230"/>';
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'5시간 미만으로 잔 30명 중 27명이 집중↓라면, P(집중↓ | 5h미만)을 분수로 나타내시오.',a:'P(집중↓ | 5h미만) = 27/30 = 9/10 = 0.9 = 90%',hint:'P(B|A) = n(A∩B)/n(A) = 27/30'},
+    {q:'7시간 이상 잔 5명 중 4명이 집중↑라면, P(집중↓ | 7h이상)는?',a:'P(집중↓ | 7h이상) = 1/5 = 0.2 = 20%',hint:'P(집중↑)=4/5이므로 P(집중↓)=1-4/5=1/5'}
+  ]
+},
+
+/* ══ 수능특강 화법과 작문: 당류 섭취 비율 — 연령별 분석 ══ */
+{
+  id:'sugar_intake_ratio',
+  exam:'2027 수능특강 화법과 작문',
+  category:'작문 — 보고서 지문',
+  source:'2027학년도 EBS 수능특강 화법과 작문 — 08 작문 적용 학습 당류 섭취 보고서 (본문 p126~133)',
+  title:'당류 섭취 비율과 WHO 기준 초과 분석',
+  badge:'비율·퍼센트·막대그래프',
+  emoji:'🍬',
+  color:'#EC4899',
+  formula:'당류 비율(%) = (당류 섭취 칼로리 / 총 칼로리) × 100',
+  curriculum:{grade:'공통수학',main:'공통수학 — 수와 연산',
+    units:['비율과 백분율','통계 그래프'],
+    concepts:['백분율 계산','WHO 기준 비교','연령대별 막대그래프 해석']},
+  passage:[
+    {t:'당류 섭취량을 분석한 결과 국민 전체 평균 당류 섭취량은 '},
+    {t:'WHO 권고 기준(1일 총열량의 10% 미만)에 비해 낮은 수준이긴 하나,',h:true,hl:'#EC4899',note:'WHO 기준: 당류 비율 < 10%  →  부등식 조건'},
+    {t:' '},
+    {t:'청소년(12~18세)은 WHO의 권고 기준을 초과하여 1일 총열량의 10% 이상을 섭취하는 것으로 나타났다.',h:true,hl:'#EF4444',note:'청소년: 10.3% > 10% → 기준 초과 / 초과량 = 10.3-10.0 = 0.3%p'},
+    {t:' 국내 청소년의 가공식품을 통한 당류 섭취의 주요 급원 식품은 '},
+    {t:'음료류(33.8%)였고, 그다음으로는 과자류·빵류 및 떡류(16.6%), 유가공품(12.0%) 순이었다.',h:true,hl:'#F97316',note:'음료류 33.8% + 과자류 16.6% + 유가공품 12.0% = 62.4% (3개 합산)'}
+  ],
+  inquiry:{
+    question:'연령대별 당류 섭취 비율 데이터에서 WHO 기준(10%)을 초과한 연령대는? 전체 평균 8.0%로부터 청소년 10.3%까지의 증가율(%)은? 초과 비율의 절댓값을 계산하시오.',
+    hypothesis:'청소년만 기준 초과. 증가율=(10.3-8.0)/8.0×100≈28.75%. 초과분=10.3-10.0=0.3%p.',
+    mathKey:'초과량 = 실제값 - 기준값  / 증가율 = (A-B)/B × 100 (%)',
+    method:['각 연령대의 당류 섭취 비율과 WHO 10% 기준 비교.','WHO 초과 여부: 비율 ≥ 10%.','초과량(절댓값) = 실제 비율 - 10%.','전체 대비 증가율 계산.','급원 식품 비율 합산: 상위 3개 합계.']
+  },
+  vars:[
+    {name:'총 칼로리 (kcal)',key:'total',unit:'kcal',min:1500,max:3000,def:2000,step:100},
+    {name:'가공식품 당류 비율',key:'ratio',unit:'%',min:5.0,max:15.0,def:10.3,step:0.1},
+    {name:'WHO 기준',key:'who',unit:'%',min:5.0,max:15.0,def:10.0,step:0.5}
+  ],
+  compute(v){
+    const sugarKcal=v.total*v.ratio/100;
+    const whoKcal=v.total*v.who/100;
+    const exceed=v.ratio-v.who;
+    const rate=(v.ratio-8.0)/8.0*100;
+    return[
+      {label:'당류 섭취 칼로리',val:sugarKcal.toFixed(0),unit:'kcal'},
+      {label:'WHO 기준 칼로리',val:whoKcal.toFixed(0),unit:'kcal'},
+      {label:'WHO 기준 초과량',val:exceed.toFixed(1),unit:'%p → '+(exceed>0?'초과 ⚠':'기준 이하 ✓')},
+      {label:'전체 대비 증가율',val:rate.toFixed(2),unit:'%'}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=150;svg.setAttribute('viewBox','0 0 '+W+' '+(H+20));let html='';
+    const ages=[{l:'전체',v:8.0},{l:'1~2세',v:5.4},{l:'6~11세',v:9.5},{l:'12~18세',v:v.ratio},{l:'19~29세',v:8.0},{l:'50~64세',v:6.3}];
+    const bw=38,gap=(W-ages.length*bw)/(ages.length+1);const maxV=15;
+    ages.forEach(function(d,i){
+      const x=gap+(bw+gap)*i;const bh=(d.v/maxV)*(H-30);const y=H-20-bh;
+      const over=d.v>=v.who;
+      html+='<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" fill="'+(over?'#EC4899':'#6366F1')+'" rx="3" opacity=".85"/>';
+      html+='<text x="'+(x+bw/2)+'" y="'+(y-3)+'" font-size="9" fill="'+(over?'#EC4899':'#6366F1')+'" text-anchor="middle">'+d.v+'</text>';
+      html+='<text x="'+(x+bw/2)+'" y="'+(H+12)+'" font-size="8" fill="#3E5070" text-anchor="middle">'+d.l+'</text>';
+    });
+    const whoY=H-20-(v.who/maxV)*(H-30);
+    html+='<line x1="0" y1="'+whoY+'" x2="'+W+'" y2="'+whoY+'" stroke="#F97316" stroke-width="1.5" stroke-dasharray="5,3"/>';
+    html+='<text x="'+W+'" y="'+(whoY-3)+'" font-size="8" fill="#F97316" text-anchor="end">WHO '+v.who+'%</text>';
+    html+='<line x1="0" y1="'+(H-20)+'" x2="'+W+'" y2="'+(H-20)+'" stroke="#1C2230"/>';
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'1일 총 섭취 칼로리가 2,000kcal이고 당류 비율이 10.3%일 때, 당류로 섭취한 칼로리는?',a:'2,000 × 0.103 = 206kcal',hint:'당류 칼로리 = 총 칼로리 × (비율/100)'},
+    {q:'WHO 권고 기준(10%)과 청소년 실제 섭취(10.3%)의 차이(초과량)는 몇 %p인가? 이때 초과 비율은 기준 대비 몇 %인가?',a:'초과량 = 0.3%p, 초과 비율 = 0.3/10.0 × 100 = 3%',hint:'초과량=10.3-10.0=0.3 / 초과율=(0.3/10.0)×100=3%'}
+  ]
+},
+
+/* ══ 수능특강 언어와 매체: 음운 개수 변동 (탈락·첨가·교체) ══ */
+{
+  id:'phoneme_change_count',
+  exam:'2027 수능특강 언어와 매체',
+  category:'언어 지문',
+  source:'2027학년도 EBS 수능특강 언어와 매체 — 언어 04 언어와 매체에 관한 태도 적용 학습 / 적용 학습 언어 07 음운 변동 (본문 p70~75)',
+  title:'음운 변동 전후 음운 개수 변화 Δn',
+  badge:'정수·개수 세기',
+  emoji:'🔤',
+  color:'#14B8A6',
+  formula:'Δn = (첨가 횟수) − (탈락+축약 횟수)',
+  curriculum:{grade:'공통수학',main:'공통수학 — 수와 연산',
+    units:['정수의 사칙연산','집합의 원소 개수'],
+    concepts:['정수의 덧셈·뺄셈','원소 추가·삭제 개수 변화','조건에 따른 경우 분류']},
+  passage:[
+    {t:'음운 변동 전후로 전체 음운 개수의 변화가 없기도 하지만, '},
+    {t:'음운의 개수가 줄어들기도 하고',h:true,hl:'#EF4444',note:'탈락(e.g. ㅎ탈락, 동음탈락): Δn = -1'},
+    {t:' 반대로 '},
+    {t:'음운의 개수가 늘어나기도 한다.',h:true,hl:'#10B981',note:'첨가(e.g. ㄴ첨가): Δn = +1'},
+    {t:' '},
+    {t:'교체는 음운 수 변화가 없다: 굳이[구지] — Δn=0.',h:true,hl:'#14B8A6',note:'교체: 음운 수 보존, Δn=0'},
+    {t:' 솔잎[솔립]은 ㄴ첨가 1회로 Δn=+1, 쌓이다[싸이다]는 ㅎ탈락 1회로 Δn=-1이다.',h:true,hl:'#F97316',note:'복합 변동 시 Δn 합산: 탈락(-1)과 첨가(+1)가 동시에 일어나면 Δn=0'}
+  ],
+  inquiry:{
+    question:'n₀개의 음운을 가진 단어에 탈락 d회, 첨가 a회가 일어나면 최종 음운 수는? 솔잎[솔립](6개→? Δn=+1), 닭볶음[닥뽀금](7개→? 탈락1, 된소리1), 넓다[널따](4개→? 탈락1)를 계산하시오.',
+    hypothesis:'n₁ = n₀ + a - d. 솔잎: n₀=6, a=1(ㄴ첨가) → n₁=7. 닭볶음: 탈락만 → Δn=-1, n₁=6. 넓다: 자음군단순화 탈락1 → Δn=-1, n₁=3.',
+    mathKey:'n₁ = n₀ + (첨가 수) - (탈락+축약 수)',
+    method:['단어의 원래 음운 수 n₀를 센다.','각 음운 변동 유형 분류: 탈락(d), 첨가(a), 교체(0).','Δn = a - d 계산.','n₁ = n₀ + Δn 검증.','된소리되기·비음화·유음화는 교체 → Δn=0.']
+  },
+  vars:[
+    {name:'원래 음운 수 n₀',key:'n0',unit:'개',min:2,max:12,def:5,step:1},
+    {name:'첨가 횟수 a',key:'a',unit:'번',min:0,max:3,def:1,step:1},
+    {name:'탈락·축약 횟수 d',key:'d',unit:'번',min:0,max:3,def:0,step:1}
+  ],
+  compute(v){
+    const dn=v.a-v.d;const n1=v.n0+dn;
+    return[
+      {label:'Δn = a - d',val:(dn>=0?'+':'')+dn,unit:'개'},
+      {label:'변동 후 음운 수 n₁',val:n1,unit:'개'},
+      {label:'변동 유형',val:dn>0?'첨가 우세':dn<0?'탈락 우세':'변화 없음',unit:''},
+      {label:'검증 n₀+Δn',val:v.n0+'+'+(dn>=0?'+':'')+dn+'='+n1,unit:''}
+    ];
+  },
+  drawChart(svg,v){
+    const W=300,H=130;svg.setAttribute('viewBox','0 0 '+W+' '+(H+20));let html='';
+    const dn=v.a-v.d;const n1=v.n0+dn;
+    const bw=80,bx1=30,bx2=180;const maxN=Math.max(v.n0,n1,8)+1;
+    const h0=(v.n0/maxN)*(H-20);const h1=(n1/maxN)*(H-20);
+    html+='<rect x="'+bx1+'" y="'+(H-20-h0)+'" width="'+bw+'" height="'+h0+'" fill="#14B8A6" rx="5" opacity=".8"/>';
+    html+='<text x="'+(bx1+bw/2)+'" y="'+(H-20-h0-5)+'" font-size="12" fill="#14B8A6" text-anchor="middle" font-weight="700">'+v.n0+'개</text>';
+    html+='<text x="'+(bx1+bw/2)+'" y="'+(H+13)+'" font-size="10" fill="#3E5070" text-anchor="middle">변동 전</text>';
+    html+='<rect x="'+bx2+'" y="'+(H-20-h1)+'" width="'+bw+'" height="'+h1+'" fill="'+(dn>0?'#10B981':dn<0?'#EF4444':'#6366F1')+'" rx="5" opacity=".85"/>';
+    html+='<text x="'+(bx2+bw/2)+'" y="'+(H-20-h1-5)+'" font-size="12" fill="'+(dn>0?'#10B981':dn<0?'#EF4444':'#6366F1')+'" text-anchor="middle" font-weight="700">'+n1+'개</text>';
+    html+='<text x="'+(bx2+bw/2)+'" y="'+(H+13)+'" font-size="10" fill="#3E5070" text-anchor="middle">변동 후</text>';
+    html+='<text x="'+(W/2)+'" y="'+(H-20-Math.max(h0,h1)/2)+'" font-size="14" fill="#F97316" text-anchor="middle" font-weight="900">Δn='+(dn>=0?'+':'')+dn+'</text>';
+    html+='<line x1="0" y1="'+(H-20)+'" x2="'+W+'" y2="'+(H-20)+'" stroke="#1C2230"/>';
+    svg.innerHTML=html;
+  },
+  questions:[
+    {q:'솔잎[솔립]의 변동 전 음운 수는 6개(솔3+잎3), 변동 후는 7개이다. Δn과 변동 유형을 쓰시오.',a:'Δn=+1, ㄴ첨가(첨가)  /  n₀=6, n₁=7',hint:'솔잎→솔립: 사이시옷 없이 ㄴ이 첨가됨 (6개→7개)'},
+    {q:'넓다[널따]에서 자음군 단순화(ㄼ→ㄹ)로 탈락 1회 일어날 때, 원래 음운 4개라면 변동 후는?',a:'n₁ = 4 - 1 = 3개',hint:'탈락 1회: Δn=-1 → n₁=n₀-1=4-1=3'}
+  ]
+}
+
+
+]; // end TOPICS
+
+/* ═══ APP STATE ═══ */
+let curTopic=null,curStep=0,slVals={};
+
+function enterApp(){
+  document.getElementById('hero').style.display='none';
+  const app=document.getElementById('app');
+  app.classList.add('on');
+  buildHome();
+}
+
+function buildHome(){
+  const tg=document.getElementById('tg');
+  tg.innerHTML='';
+  const tagColors={'5월 모의고사':'#FF6B35','3월 모의고사':'#4488FF','6월 모의평가':'#9966FF'};
+  TOPICS.forEach((t,i)=>{
+    const tc=tagColors[t.exam]||'#FFB347';
+    const div=document.createElement('div');
+    div.className='tc';
+    div.style.setProperty('--tc-clr',t.color);
+    div.innerHTML=
+      '<div class="tc-icon" style="--tc-clr:'+t.color+'">'+t.emoji+'</div>'+
+      '<div class="tc-m">'+
+        '<div class="tc-tags">'+
+          '<span class="tag" style="background:'+tc+'22;color:'+tc+'">'+t.exam+'</span>'+
+          '<span class="tag" style="background:'+t.color+'18;color:'+t.color+'">'+t.badge+'</span>'+
+        '</div>'+
+        '<div class="tc-nm">'+t.title+'</div>'+
+        '<div class="tc-sb">'+t.category+'</div>'+
+      '</div>'+
+      '<div class="tc-ar">›</div>';
+    div.onclick=function(){openTopic(t);};
+    tg.appendChild(div);
+  });
+  document.getElementById('home').style.display='block';
+  document.getElementById('detail').classList.remove('show');
+  document.getElementById('tb-back').classList.remove('show');
+  document.getElementById('tb-ttl').textContent='';
+}
+
+function openTopic(t){
+  curTopic=t;curStep=0;
+  slVals={};
+  (t.vars||[]).forEach(function(v){slVals[v.key]=v.def;});
+  document.getElementById('home').style.display='none';
+  const det=document.getElementById('detail');
+  det.classList.add('show');
+  document.getElementById('tb-back').classList.add('show');
+  document.getElementById('tb-ttl').textContent=t.title;
+  document.getElementById('stepper').style.setProperty('--sc-clr',t.color);
+  document.getElementById('detail').style.setProperty('--topic-clr',t.color);
+  buildStepper();
+  buildAllPanels();
+  setStep(0);
+}
+
+function showHome(){
+  document.getElementById('home').style.display='block';
+  document.getElementById('detail').classList.remove('show');
+  document.getElementById('tb-back').classList.remove('show');
+  document.getElementById('tb-ttl').textContent='';
+}
+
+function buildStepper(){
+  const s=document.getElementById('stepper');
+  s.innerHTML='';
+  const steps=['📄 지문 분석','💡 탐구 설계','🔢 수식 탐구','✏️ 연습문제'];
+  const icons=['①','②','③','④'];
+  steps.forEach(function(lbl,i){
+    const item=document.createElement('div');
+    item.className='si';
+    const sc=document.createElement('div');
+    sc.className='sc';
+    sc.id='sc-'+i;
+    sc.textContent=icons[i];
+    sc.onclick=(function(n){return function(){setStep(n);};})(i);
+    const sl=document.createElement('div');
+    sl.className='sl-lbl';
+    sl.id='sl-'+i;
+    sl.textContent=lbl;
+    item.appendChild(sc);
+    item.appendChild(sl);
+    s.appendChild(item);
+    if(i<steps.length-1){
+      const l=document.createElement('div');
+      l.className='sline';
+      l.id='sln-'+i;
+      s.appendChild(l);
+    }
+  });
+}
+
+function setStep(n){
+  curStep=n;
+  for(let i=0;i<4;i++){
+    const c=document.getElementById('sc-'+i);
+    const l=document.getElementById('sl-'+i);
+    if(!c)continue;
+    c.classList.remove('active','done');
+    l.classList.remove('active');
+    if(i<n)c.classList.add('done');
+    else if(i===n){c.classList.add('active');l.classList.add('active');}
+    if(i<3){const line=document.getElementById('sln-'+i);if(line)line.classList.toggle('done',i<n);}
+  }
+  document.querySelectorAll('.panel').forEach(function(p,i){p.classList.toggle('active',i===n);});
+}
+
+function buildAllPanels(){buildP0();buildP1();buildP2();buildP3();}
+
+function buildP0(){
+  const t=curTopic;
+  const p=document.getElementById('p0');
+  let pHTML='';
+  (t.passage||[]).forEach(function(seg){
+    if(!seg.h){pHTML+='<span>'+seg.t+'</span>';}
+    else{
+      const c=seg.hl||t.color;
+      pHTML+='<mark class="hl" style="--hl-clr:'+c+'">'+seg.t+'<span class="hl-tp" style="--hl-clr:'+c+'">'+seg.note+'</span></mark>';
+    }
+  });
+  const hls=(t.passage||[]).filter(function(s){return s.h;});
+  let hlListHTML='';
+  hls.forEach(function(seg,i){
+    hlListHTML+='<div class="hl-item"><div class="hl-n" style="background:'+(seg.hl||t.color)+'22;color:'+(seg.hl||t.color)+'">'+(i+1)+'</div><div><div class="hl-tx">"'+seg.t.trim()+'"</div><div class="hl-mt">→ '+seg.note+'</div></div></div>';
+  });
+  p.innerHTML=
+    '<span class="exam-tag" style="--topic-clr:'+t.color+'">'+t.exam+'</span>'+
+    '<div class="passage-box" style="--topic-clr:'+t.color+'">'+
+      '<div style="font-size:11px;color:var(--t3);font-weight:700;letter-spacing:.05em;margin-bottom:12px">📄 '+t.source+'</div>'+
+      '<p style="margin:0">'+pHTML+'</p>'+
+    '</div>'+
+    '<div class="hl-list"><div class="hl-lt">🔍 수학적 표현 발견</div>'+hlListHTML+'</div>'+
+    '<div class="nav-row"><button class="btn-n" onclick="setStep(1)" style="flex:1;background:'+t.color+'">탐구 설계 →</button></div>';
+}
+
+function buildP1(){
+  const t=curTopic;
+  const p=document.getElementById('p1');
+  let mHTML='';
+  (t.inquiry.method||[]).forEach(function(m,i){
+    mHTML+='<li><div class="mn" style="background:'+t.color+'">'+(i+1)+'</div><div class="mt">'+m+'</div></li>';
+  });
+  let uB='';
+  (t.curriculum.units||[]).forEach(function(u){uB+='<span class="cbadge">'+u+'</span>';});
+  let cB='';
+  (t.curriculum.concepts||[]).forEach(function(c){cB+='<span style="font-size:11px;padding:3px 10px;background:var(--surface);border:1px solid var(--border);border-radius:99px;color:var(--t2)">'+c+'</span>';});
+  p.innerHTML=
+    '<div class="iq-card"><div class="iq-head"><span>❓</span><span class="iq-lbl" style="color:#A78BFA">탐구 질문</span></div><div class="iq-body">'+t.inquiry.question+'</div></div>'+
+    '<div class="iq-card"><div class="iq-head"><span>💡</span><span class="iq-lbl" style="color:#34D399">가설</span></div><div class="iq-body">'+t.inquiry.hypothesis+'</div></div>'+
+    '<div class="curr-box"><h4>📚 2022 개정 교육과정 연계</h4><div style="margin-bottom:8px"><span class="cbadge main">'+t.curriculum.main+'</span></div><div class="curr-badges">'+uB+'</div><div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:5px">'+cB+'</div></div>'+
+    '<div class="iq-card"><div class="iq-head"><span>🧮</span><span class="iq-lbl" style="color:'+t.color+'">핵심 수학 개념</span></div><div class="iq-mono">'+t.inquiry.mathKey+'</div></div>'+
+    '<div class="iq-card"><div class="iq-head"><span>📋</span><span class="iq-lbl" style="color:var(--t2)">탐구 방법</span></div><ul class="mlist">'+mHTML+'</ul></div>'+
+    '<div class="nav-row"><button class="btn-p" onclick="setStep(0)">← 지문</button><button class="btn-n" onclick="setStep(2)" style="background:'+t.color+'">직접 계산 →</button></div>';
+}
+
+function buildP2(){
+  const t=curTopic;
+  const p=document.getElementById('p2');
+  let slHTML='';
+  (t.vars||[]).forEach(function(v){
+    slHTML+=
+      '<div class="sr">'+
+        '<div class="sh"><span class="slbl">'+v.name+' <span style="color:var(--t3);font-size:11px">('+v.unit+')</span></span>'+
+        '<span class="sval" id="sv-'+v.key+'">'+v.def+'</span></div>'+
+        '<input type="range" id="sl-'+v.key+'" min="'+v.min+'" max="'+v.max+'" step="'+v.step+'" value="'+v.def+'" '+
+        'oninput="onSlider(\''+v.key+'\',this.value)" style="--topic-clr:'+t.color+'">'+
+        '<div class="sticks"><span>'+v.min+'</span><span>'+v.max+'</span></div>'+
+      '</div>';
+  });
+  p.innerHTML=
+    '<div class="fbanner" style="border-color:'+t.color+'33;color:'+t.color+'">'+t.formula+'</div>'+
+    '<div class="sc-card">'+slHTML+'</div>'+
+    '<div class="rg" id="rg" style="--topic-clr:'+t.color+'"></div>'+
+    '<div class="chart-card"><div class="chart-ttl">시각화 그래프</div><svg id="chart-svg" style="width:100%"></svg></div>'+
+    '<div class="nav-row"><button class="btn-p" onclick="setStep(1)">← 탐구 설계</button><button class="btn-n" onclick="setStep(3)" style="background:'+t.color+'">연습문제 →</button></div>';
+  updateCalc();
+}
+
+function onSlider(key,val){
+  slVals[key]=Number(val);
+  document.getElementById('sv-'+key).textContent=val;
+  updateCalc();
+}
+
+function updateCalc(){
+  const t=curTopic;
+  if(!t)return;
+  const res=t.compute(slVals);
+  const g=document.getElementById('rg');
+  if(!g)return;
+  let html='';
+  res.forEach(function(r){
+    html+='<div class="ri"><div class="rl">'+r.label+'</div><div class="rv">'+r.val+'</div>'+(r.unit?'<div class="ru">'+r.unit+'</div>':'')+'</div>';
+  });
+  g.innerHTML=html;
+  const svg=document.getElementById('chart-svg');
+  if(svg)t.drawChart(svg,slVals);
+}
+
+function buildP3(){
+  const t=curTopic;
+  const p=document.getElementById('p3');
+  let qHTML='';
+  (t.questions||[]).forEach(function(q,i){
+    qHTML+=
+      '<div class="qcard">'+
+        '<div class="qq">Q'+(i+1)+'. '+q.q+'</div>'+
+        '<div class="qrow">'+
+          '<input class="qi" id="qi-'+i+'" placeholder="풀이 또는 답을 입력하세요...">'+
+          '<button class="qbtn" onclick="revealQuiz('+i+')" style="background:'+t.color+'">정답 확인</button>'+
+        '</div>'+
+        '<div id="qa-'+i+'" style="display:none" class="qans">'+
+          '<div class="qal">✅ 정답</div>'+
+          '<div class="qav" id="qa-v-'+i+'"></div>'+
+          '<div class="qah" id="qa-h-'+i+'"></div>'+
+        '</div>'+
+      '</div>';
+  });
+  p.innerHTML=qHTML+
+    '<div class="nav-row"><button class="btn-p" onclick="setStep(2)">← 수식 탐구</button><button class="btn-p" onclick="setStep(0)" style="flex:1">↩ 처음부터</button></div>';
+}
+
+function revealQuiz(i){
+  const t=curTopic;
+  const q=t.questions[i];
+  const d=document.getElementById('qa-'+i);
+  document.getElementById('qa-v-'+i).textContent=q.a;
+  document.getElementById('qa-h-'+i).textContent='💡 힌트: '+q.hint;
+  d.style.display='block';
+}
+</script>
+</body>
+</html>
